@@ -78,4 +78,49 @@
       }).catch(function(){ /* fails silently */ });
     }
   });
+
+  /* ===== ROI calculator ===== */
+  var roiCalls=document.getElementById('roiCalls'),
+      roiMissed=document.getElementById('roiMissed'),
+      roiValue=document.getElementById('roiValue'),
+      roiLost=document.getElementById('roiLost'),
+      roiRecovered=document.getElementById('roiRecovered');
+
+  function fmt(n){ return Math.round(n).toLocaleString('en-US'); }
+  var RECOVERY_RATE=0.73; // NorthAI converts ~73% of missed calls
+
+  function calcRoi(){
+    if(!roiCalls) return;
+    var calls=parseFloat(roiCalls.value)||0,
+        missed=Math.min(parseFloat(roiMissed.value)||0,100),
+        value=parseFloat(roiValue.value)||0;
+    var lost=calls*(missed/100)*value;
+    roiLost.textContent=fmt(lost);
+    roiRecovered.textContent='$'+fmt(lost*RECOVERY_RATE)+'/mo';
+  }
+  if(roiCalls){
+    [roiCalls,roiMissed,roiValue].forEach(function(el){
+      el.addEventListener('input',calcRoi);
+    });
+    calcRoi();
+  }
+
+  /* ===== Theme toggle (dark / light) ===== */
+  var themeBtn=document.getElementById('themeToggle');
+  var THEME_KEY='northai-theme';
+  function applyTheme(t){
+    document.body.classList.toggle('light', t==='light');
+    if(themeBtn){
+      var lbl=themeBtn.querySelector('.tt-label');
+      if(lbl) lbl.textContent = (t==='light') ? 'Dark' : 'Light';
+    }
+  }
+  try{ applyTheme(localStorage.getItem(THEME_KEY)||'dark'); }catch(e){}
+  if(themeBtn){
+    themeBtn.addEventListener('click',function(){
+      var next = document.body.classList.contains('light') ? 'dark' : 'light';
+      applyTheme(next);
+      try{ localStorage.setItem(THEME_KEY,next); }catch(e){}
+    });
+  }
 })();

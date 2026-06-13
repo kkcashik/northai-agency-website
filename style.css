@@ -13,6 +13,7 @@
   --white-55:rgba(255,255,255,.55);
   --white-40:rgba(255,255,255,.40);
   --white-12:rgba(255,255,255,.12);
+  --text-strong:rgba(255,255,255,.82);
 
   /* ===== Type ===== */
   --serif:"DM Serif Display",Georgia,serif;
@@ -70,7 +71,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
   transition:transform .25s ease,background .25s ease,box-shadow .25s ease,border-color .25s ease;
   border:1px solid transparent;
 }
-.btn-solid{background:var(--blue);color:var(--white);box-shadow:0 8px 24px rgba(21,101,192,.35)}
+.btn-solid{background:var(--blue);color:#fff;box-shadow:0 8px 24px rgba(21,101,192,.35)}
 .btn-solid:hover{transform:translateY(-2px);background:#1257a8;box-shadow:0 12px 30px rgba(21,101,192,.5)}
 .btn-ghost{background:transparent;color:var(--white);border-color:var(--line-strong)}
 .btn-ghost:hover{transform:translateY(-2px);border-color:var(--lightblue);background:rgba(133,183,235,.06)}
@@ -186,7 +187,7 @@ header.nav.scrolled{
 @keyframes ccBar{0%,100%{height:18%}50%{height:100%}}
 .cc-transcript{display:flex;flex-direction:column;gap:10px}
 .cc-transcript p{font-size:14px;line-height:1.5;border-radius:12px;padding:10px 14px;margin:0;max-width:88%}
-.cc-them{align-self:flex-start;background:var(--navy-2);color:rgba(255,255,255,.82);border:1px solid var(--line)}
+.cc-them{align-self:flex-start;background:var(--navy-2);color:var(--text-strong);border:1px solid var(--line)}
 .cc-us{align-self:flex-end;background:rgba(133,183,235,.14);color:var(--white);border:1px solid rgba(133,183,235,.3)}
 .cc-foot{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
 .cc-tag{font-size:12px;color:#3fd17a;background:rgba(63,209,122,.1);border:1px solid rgba(63,209,122,.22);border-radius:var(--radius-pill);padding:5px 12px}
@@ -215,7 +216,7 @@ header.nav.scrolled{
 ============================================================ */
 .alert{background:var(--lightblue);color:var(--navy)}
 .alert .wrap{display:flex;align-items:center;gap:var(--s-3);padding:24px var(--s-3);flex-wrap:wrap}
-.alert .pill-tag{background:var(--blue);color:var(--white);font-size:12px;font-weight:700;
+.alert .pill-tag{background:var(--blue);color:#fff;font-size:12px;font-weight:700;
   letter-spacing:.1em;padding:7px 14px;border-radius:var(--radius-pill);white-space:nowrap}
 .alert p{font-weight:500;font-size:clamp(15px,2vw,18px);flex:1;min-width:260px}
 .alert a{font-weight:700;white-space:nowrap;color:var(--navy);border-bottom:2px solid var(--navy);
@@ -491,9 +492,94 @@ footer{padding:var(--s-6) 0 var(--s-4);border-top:1px solid var(--line)}
   .vcard .vsub,
   .chip,
   .discovery p,
-  .stat .lbl { color: rgba(255,255,255,.82); }
+  .stat .lbl { color: var(--text-strong); }
 }
 
 @media (max-width:420px){
   .stats{grid-template-columns:1fr 1fr}
 }
+
+/* ============================================================
+   ROI CALCULATOR
+============================================================ */
+.roi{
+  display:grid;grid-template-columns:1.2fr 1fr;margin-top:var(--s-5);
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  background:var(--navy-card);
+}
+.roi-inputs{padding:var(--s-4)}
+.roi-title{font-size:clamp(22px,2.6vw,30px);margin-bottom:var(--s-2)}
+.roi-title .accent{color:var(--lightblue);font-style:italic}
+.roi-field{margin-top:var(--s-3)}
+.roi-field label{display:block;font-size:14px;font-weight:500;color:var(--white)}
+.roi-hint{display:block;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--white-40);margin-top:3px}
+.roi-field input{
+  margin-top:8px;width:100%;background:var(--navy-2);border:1px solid var(--line-strong);
+  border-radius:var(--radius-sm);color:var(--white);padding:12px 14px;
+  font-family:var(--sans);font-size:16px;transition:border-color .2s ease;
+}
+.roi-field input:focus{outline:none;border-color:var(--lightblue)}
+.roi-result{
+  background:linear-gradient(160deg,#11294a,#0E2340);
+  padding:var(--s-4);display:flex;flex-direction:column;justify-content:center;color:#fff;
+}
+.roi-label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.roi-amount{font-family:var(--serif);font-size:clamp(40px,6vw,58px);line-height:1;margin:10px 0;color:#fff}
+.roi-amount small{font-family:var(--sans);font-size:16px;color:rgba(255,255,255,.55);font-weight:400}
+.roi-sub{font-size:14px;line-height:1.55;color:rgba(255,255,255,.72);margin-bottom:var(--s-3)}
+.roi-sub b{color:var(--lightblue);font-weight:700}
+.roi-result .btn{align-self:flex-start}
+@media (max-width:768px){
+  .roi{grid-template-columns:1fr}
+  .roi-inputs{padding:var(--s-3)}
+  .roi-result{padding:var(--s-3)}
+}
+
+/* ============================================================
+   THEME TOGGLE
+============================================================ */
+.theme-toggle{
+  position:fixed;bottom:22px;right:22px;z-index:200;
+  display:flex;align-items:center;gap:8px;padding:10px 16px;
+  border-radius:var(--radius-pill);background:var(--navy-card);
+  border:1px solid var(--line-strong);color:var(--white);cursor:pointer;
+  font-family:var(--sans);font-size:13px;font-weight:500;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
+  transition:transform .2s ease,border-color .2s ease;
+}
+.theme-toggle:hover{transform:translateY(-2px);border-color:var(--lightblue)}
+.theme-toggle .ti-moon{display:none}
+body.light .theme-toggle .ti-sun{display:none}
+body.light .theme-toggle .ti-moon{display:block}
+
+/* ============================================================
+   LIGHT THEME
+============================================================ */
+body.light{
+  --navy:#F4F7FB;
+  --navy-2:#EAEFF7;
+  --navy-card:#FFFFFF;
+  --white:#0E2340;
+  --white-55:rgba(14,35,64,.62);
+  --white-40:rgba(14,35,64,.5);
+  --white-12:rgba(14,35,64,.1);
+  --text-strong:rgba(14,35,64,.86);
+  --line:rgba(14,35,64,.12);
+  --line-strong:rgba(14,35,64,.2);
+  --lightblue:#1565C0;
+}
+body.light header.nav.scrolled{background:rgba(255,255,255,.92);border-bottom:1px solid var(--line)}
+body.light .mobile-menu{background:rgba(255,255,255,.98)}
+body.light .badge{background:rgba(21,101,192,.07)}
+body.light .logo .mark{background:var(--blue);border-color:transparent}
+body.light .call-card{
+  background:linear-gradient(180deg,#fff,#F4F7FB);
+  box-shadow:0 30px 80px -34px rgba(14,35,64,.28);
+}
+body.light .card,
+body.light .case,
+body.light .plan,
+body.light .tcard,
+body.light .vcard,
+body.light .founder .fcard{box-shadow:0 12px 34px -20px rgba(14,35,64,.28)}
+body.light .theme-toggle{box-shadow:0 10px 30px rgba(14,35,64,.16)}
