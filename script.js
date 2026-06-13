@@ -115,7 +115,7 @@
       if(lbl) lbl.textContent = (t==='light') ? 'Dark' : 'Light';
     }
   }
-  try{ applyTheme(localStorage.getItem(THEME_KEY)||'dark'); }catch(e){}
+  try{ applyTheme(localStorage.getItem(THEME_KEY)||'light'); }catch(e){}
   if(themeBtn){
     themeBtn.addEventListener('click',function(){
       var next = document.body.classList.contains('light') ? 'dark' : 'light';
