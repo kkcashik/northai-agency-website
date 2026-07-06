@@ -618,6 +618,40 @@ footer{padding:var(--s-6) 0 var(--s-4);border-top:1px solid var(--line)}
 }
 
 /* ============================================================
+   POST-CALL POPUP
+============================================================ */
+.cc-modal{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:20px}
+.cc-modal[hidden]{display:none}
+.cc-modal-backdrop{position:absolute;inset:0;background:rgba(5,14,28,.62);backdrop-filter:blur(4px)}
+.cc-modal-card{
+  position:relative;max-width:430px;width:100%;text-align:center;
+  background:var(--navy-card);border:1px solid var(--line-strong);border-radius:20px;
+  padding:38px 32px 30px;box-shadow:0 40px 100px -30px rgba(0,0,0,.55);
+  animation:ccModalIn .35s cubic-bezier(.2,.9,.3,1.2) both;
+}
+@keyframes ccModalIn{from{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:none}}
+.cc-modal-x{
+  position:absolute;top:12px;right:14px;width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--line);background:transparent;color:var(--white-55);
+  font-size:20px;line-height:1;cursor:pointer;transition:color .2s ease,border-color .2s ease;
+}
+.cc-modal-x:hover{color:var(--white);border-color:var(--line-strong)}
+.cc-modal-ic{
+  width:56px;height:56px;border-radius:50%;margin:0 auto 18px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(21,101,192,.12);color:var(--lightblue);
+}
+.cc-modal-card h3{font-size:26px;color:var(--white);margin-bottom:10px}
+.cc-modal-card p{font-size:15px;line-height:1.6;color:var(--white-55);margin-bottom:22px}
+.cc-modal-card p em{color:var(--lightblue);font-style:italic}
+.cc-modal-card .btn{width:100%;justify-content:center}
+.cc-modal-later{
+  margin-top:12px;background:none;border:0;color:var(--white-40);
+  font-family:var(--sans);font-size:13px;cursor:pointer;text-decoration:underline;
+}
+.cc-modal-later:hover{color:var(--white-55)}
+
+/* ============================================================
    THEME TOGGLE
 ============================================================ */
 .theme-toggle{

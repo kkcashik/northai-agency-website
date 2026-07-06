@@ -167,42 +167,56 @@
       ccPlayLabel.textContent='Replay the call';
       ccPlay.classList.remove('hidden');
       ccPlaying=false;
+      // invite popup after the tags land
+      ccTimers.push(setTimeout(ccShowModal,1400));
     }
 
-    /* Pre-recorded neural voice clips (one per transcript line) */
-    var ccClips=[];
-    for(var ci=1;ci<=4;ci++){ ccClips.push(new Audio('audio/call-'+ci+'.mp3?v=1')); }
-    ccClips.forEach(function(a){ a.preload='auto'; });
+    /* ===== Post-call popup ===== */
+    var ccModal=document.getElementById('ccModal');
+    function ccShowModal(){ if(ccModal){ ccModal.hidden=false; } }
+    function ccHideModal(){ if(ccModal){ ccModal.hidden=true; } }
+    if(ccModal){
+      ccModal.querySelectorAll('[data-close]').forEach(function(b){
+        b.addEventListener('click',ccHideModal);
+      });
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape') ccHideModal(); });
+    }
+
+    /* Pre-recorded neural voice clips — fresh Audio objects per playback
+       (reusing one element across replays is what made sound flaky) */
+    var ccCurrentClip=null;
+    // warm the browser cache once so first play is instant
+    for(var ci=1;ci<=4;ci++){ var warm=new Audio('audio/call-'+ci+'.mp3?v=1'); warm.preload='auto'; }
 
     function ccStopAudio(){
-      ccClips.forEach(function(a){ try{ a.pause(); a.currentTime=0; }catch(e){} });
+      if(ccCurrentClip){ try{ ccCurrentClip.onended=null; ccCurrentClip.pause(); }catch(e){} ccCurrentClip=null; }
     }
 
     function ccSpeak(i){
       if(!ccPlaying) return;
       if(i>=ccLines.length){ ccFinish(); return; }
       var el=ccLines[i];
-      el.classList.add('show');
-      ccWave.classList.remove('paused');
       var text=el.textContent.replace(/[“”"]/g,'').trim();
       var isUs=el.classList.contains('cc-us');
 
-      var clip=ccClips[i];
+      function reveal(){
+        el.classList.add('show');
+        ccWave.classList.remove('paused');
+      }
       function next(){
         if(!ccPlaying) return;
         ccWave.classList.add('paused');
         ccTimers.push(setTimeout(function(){ ccSpeak(i+1); }, 420));
       }
 
-      if(clip){
-        clip.onended=next;
-        clip.onerror=function(){ ccSpeakTTS(text,isUs,next); };
-        clip.currentTime=0;
-        var p=clip.play();
-        if(p && p.catch){ p.catch(function(){ ccSpeakTTS(text,isUs,next); }); }
-        return;
-      }
-      ccSpeakTTS(text,isUs,next);
+      var clip=new Audio('audio/call-'+(i+1)+'.mp3?v=1');
+      ccCurrentClip=clip;
+      clip.onended=next;
+      var p=clip.play();
+      if(p && p.then){
+        p.then(reveal) // text appears only once audio is actually playing
+         .catch(function(){ reveal(); ccSpeakTTS(text,isUs,next); });
+      } else { reveal(); }
     }
 
     /* Fallback: browser speech synthesis if audio files can't play */
