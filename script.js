@@ -149,6 +149,7 @@
       ccTimers.forEach(clearTimeout); ccTimers=[];
       if(ccTicker) clearInterval(ccTicker);
       if(synth){ try{ synth.cancel(); }catch(e){} }
+      ccStopAudio();
       ccLines.forEach(function(m){ m.classList.remove('show'); });
       ccTags.forEach(function(m){ m.classList.remove('show'); });
       ccWave.classList.add('paused');
@@ -168,6 +169,15 @@
       ccPlaying=false;
     }
 
+    /* Pre-recorded neural voice clips (one per transcript line) */
+    var ccClips=[];
+    for(var ci=1;ci<=4;ci++){ ccClips.push(new Audio('audio/call-'+ci+'.mp3?v=1')); }
+    ccClips.forEach(function(a){ a.preload='auto'; });
+
+    function ccStopAudio(){
+      ccClips.forEach(function(a){ try{ a.pause(); a.currentTime=0; }catch(e){} });
+    }
+
     function ccSpeak(i){
       if(!ccPlaying) return;
       if(i>=ccLines.length){ ccFinish(); return; }
@@ -177,21 +187,34 @@
       var text=el.textContent.replace(/[“”"]/g,'').trim();
       var isUs=el.classList.contains('cc-us');
 
-      if(!synth){ // no speech support → timed reveal fallback
-        ccTimers.push(setTimeout(function(){ ccSpeak(i+1); }, Math.max(1900, text.length*46)));
+      var clip=ccClips[i];
+      function next(){
+        if(!ccPlaying) return;
+        ccWave.classList.add('paused');
+        ccTimers.push(setTimeout(function(){ ccSpeak(i+1); }, 420));
+      }
+
+      if(clip){
+        clip.onended=next;
+        clip.onerror=function(){ ccSpeakTTS(text,isUs,next); };
+        clip.currentTime=0;
+        var p=clip.play();
+        if(p && p.catch){ p.catch(function(){ ccSpeakTTS(text,isUs,next); }); }
         return;
       }
+      ccSpeakTTS(text,isUs,next);
+    }
+
+    /* Fallback: browser speech synthesis if audio files can't play */
+    function ccSpeakTTS(text,isUs,done){
+      if(!synth){ ccTimers.push(setTimeout(done, Math.max(1900, text.length*46))); return; }
       var u=new SpeechSynthesisUtterance(text);
       u.voice = isUs ? ccVoice.us : ccVoice.them;
       u.rate  = isUs ? 1.03 : 1.0;
       u.pitch = isUs ? 1.06 : 0.92;
-      u.onend=function(){
-        if(!ccPlaying) return;
-        ccWave.classList.add('paused');
-        ccTimers.push(setTimeout(function(){ ccSpeak(i+1); }, 380));
-      };
-      u.onerror=function(){ if(ccPlaying){ ccSpeak(i+1); } };
-      try{ synth.speak(u); }catch(e){ ccSpeak(i+1); }
+      u.onend=done;
+      u.onerror=done;
+      try{ synth.speak(u); }catch(e){ done(); }
     }
 
     ccPlay.addEventListener('click',function(){
