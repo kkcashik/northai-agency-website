@@ -57,11 +57,18 @@
   var form=document.getElementById('demoForm'), ok=document.getElementById('formOk');
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    var email=document.getElementById('email');
+    var name=document.getElementById('leadName'),
+        clinic=document.getElementById('leadClinic'),
+        email=document.getElementById('email'),
+        phone=document.getElementById('leadPhone');
+    if(name && !name.value.trim()){ name.focus(); return; }
     if(!email.value || !email.checkValidity()){ email.focus(); return; }
 
     var payload={
+      name: name ? name.value.trim() : "",
+      clinic: clinic ? clinic.value.trim() : "",
       email: email.value,
+      phone: phone ? phone.value.trim() : "",
       source: "NorthAI website",
       page: location.href,
       submitted_at: new Date().toISOString()
@@ -103,6 +110,53 @@
       el.addEventListener('input',calcRoi);
     });
     calcRoi();
+  }
+
+  /* ===== Hero call demo playback ===== */
+  var ccPlay=document.getElementById('ccPlay'),
+      ccWave=document.getElementById('ccWave'),
+      ccTime=document.getElementById('ccTime'),
+      ccStatusText=document.getElementById('ccStatusText'),
+      ccPlayLabel=document.getElementById('ccPlayLabel'),
+      ccMsgs=document.querySelectorAll('#callDemo .cc-msg');
+
+  if(ccPlay){
+    var ccTimers=[], ccTicker=null;
+
+    function ccReset(){
+      ccTimers.forEach(clearTimeout); ccTimers=[];
+      if(ccTicker) clearInterval(ccTicker);
+      ccMsgs.forEach(function(m){ m.classList.remove('show'); });
+      ccWave.classList.add('paused');
+      ccTime.textContent='00:00';
+    }
+
+    ccPlay.addEventListener('click',function(){
+      ccReset();
+      ccPlay.classList.add('hidden');
+      ccStatusText.textContent='Live · answering now';
+      ccWave.classList.remove('paused');
+
+      // call timer
+      var secs=0;
+      ccTicker=setInterval(function(){
+        secs++;
+        ccTime.textContent='00:'+(secs<10?'0':'')+secs;
+        if(secs>=42){
+          clearInterval(ccTicker);
+          ccWave.classList.add('paused');
+          ccStatusText.textContent='Call complete · patient booked';
+          ccPlayLabel.textContent='Replay the call';
+          ccPlay.classList.remove('hidden');
+        }
+      },160); // compressed time so the demo plays in ~7s
+
+      // transcript reveals: 4 messages, then 3 status tags
+      var schedule=[600,2100,3600,5100,6200,6500,6800];
+      ccMsgs.forEach(function(m,i){
+        ccTimers.push(setTimeout(function(){ m.classList.add('show'); },schedule[i]||6800));
+      });
+    });
   }
 
   /* ===== Theme toggle (dark / light) ===== */
