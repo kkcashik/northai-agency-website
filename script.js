@@ -112,50 +112,102 @@
     calcRoi();
   }
 
-  /* ===== Hero call demo playback ===== */
+  /* ===== Hero call demo playback (with voice) ===== */
   var ccPlay=document.getElementById('ccPlay'),
       ccWave=document.getElementById('ccWave'),
       ccTime=document.getElementById('ccTime'),
       ccStatusText=document.getElementById('ccStatusText'),
       ccPlayLabel=document.getElementById('ccPlayLabel'),
-      ccMsgs=document.querySelectorAll('#callDemo .cc-msg');
+      ccLines=document.querySelectorAll('#ccTranscript .cc-msg'),
+      ccTags=document.querySelectorAll('#ccFoot .cc-msg');
 
   if(ccPlay){
-    var ccTimers=[], ccTicker=null;
+    var ccTimers=[], ccTicker=null, ccPlaying=false;
+    var synth=window.speechSynthesis||null;
+    var ccVoice={us:null,them:null};
+
+    function ccPickVoices(){
+      if(!synth) return;
+      var vs=synth.getVoices()||[];
+      var en=vs.filter(function(v){ return /^en(-|_|$)/i.test(v.lang); });
+      if(!en.length) en=vs;
+      function find(names){
+        for(var n=0;n<names.length;n++){
+          for(var i=0;i<en.length;i++){
+            if(en[i].name.toLowerCase().indexOf(names[n])>=0) return en[i];
+          }
+        }
+        return null;
+      }
+      // receptionist = warm female voice; patient = a distinctly different voice
+      ccVoice.us   = find(['jenny','aria','samantha','zira','google us english','female']) || en[0] || null;
+      ccVoice.them = find(['guy','david','mark','daniel','google uk english male','male']) || en[1] || en[0] || null;
+    }
+    if(synth){ ccPickVoices(); if(synth.onvoiceschanged!==undefined) synth.onvoiceschanged=ccPickVoices; }
 
     function ccReset(){
       ccTimers.forEach(clearTimeout); ccTimers=[];
       if(ccTicker) clearInterval(ccTicker);
-      ccMsgs.forEach(function(m){ m.classList.remove('show'); });
+      if(synth){ try{ synth.cancel(); }catch(e){} }
+      ccLines.forEach(function(m){ m.classList.remove('show'); });
+      ccTags.forEach(function(m){ m.classList.remove('show'); });
       ccWave.classList.add('paused');
       ccTime.textContent='00:00';
+      ccPlaying=false;
+    }
+
+    function ccFinish(){
+      if(ccTicker) clearInterval(ccTicker);
+      ccWave.classList.add('paused');
+      ccTags.forEach(function(t,i){
+        ccTimers.push(setTimeout(function(){ t.classList.add('show'); }, 250+i*320));
+      });
+      ccStatusText.textContent='Call complete · patient booked';
+      ccPlayLabel.textContent='Replay the call';
+      ccPlay.classList.remove('hidden');
+      ccPlaying=false;
+    }
+
+    function ccSpeak(i){
+      if(!ccPlaying) return;
+      if(i>=ccLines.length){ ccFinish(); return; }
+      var el=ccLines[i];
+      el.classList.add('show');
+      ccWave.classList.remove('paused');
+      var text=el.textContent.replace(/[“”"]/g,'').trim();
+      var isUs=el.classList.contains('cc-us');
+
+      if(!synth){ // no speech support → timed reveal fallback
+        ccTimers.push(setTimeout(function(){ ccSpeak(i+1); }, Math.max(1900, text.length*46)));
+        return;
+      }
+      var u=new SpeechSynthesisUtterance(text);
+      u.voice = isUs ? ccVoice.us : ccVoice.them;
+      u.rate  = isUs ? 1.03 : 1.0;
+      u.pitch = isUs ? 1.06 : 0.92;
+      u.onend=function(){
+        if(!ccPlaying) return;
+        ccWave.classList.add('paused');
+        ccTimers.push(setTimeout(function(){ ccSpeak(i+1); }, 380));
+      };
+      u.onerror=function(){ if(ccPlaying){ ccSpeak(i+1); } };
+      try{ synth.speak(u); }catch(e){ ccSpeak(i+1); }
     }
 
     ccPlay.addEventListener('click',function(){
       ccReset();
+      ccPlaying=true;
       ccPlay.classList.add('hidden');
       ccStatusText.textContent='Live · answering now';
       ccWave.classList.remove('paused');
 
-      // call timer
       var secs=0;
       ccTicker=setInterval(function(){
-        secs++;
-        ccTime.textContent='00:'+(secs<10?'0':'')+secs;
-        if(secs>=42){
-          clearInterval(ccTicker);
-          ccWave.classList.add('paused');
-          ccStatusText.textContent='Call complete · patient booked';
-          ccPlayLabel.textContent='Replay the call';
-          ccPlay.classList.remove('hidden');
-        }
-      },160); // compressed time so the demo plays in ~7s
+        secs++; ccTime.textContent='00:'+(secs<10?'0':'')+secs;
+      },1000);
 
-      // transcript reveals: 4 messages, then 3 status tags
-      var schedule=[600,2100,3600,5100,6200,6500,6800];
-      ccMsgs.forEach(function(m,i){
-        ccTimers.push(setTimeout(function(){ m.classList.add('show'); },schedule[i]||6800));
-      });
+      if(synth){ try{ synth.resume(); }catch(e){} }
+      ccSpeak(0); // first utterance fires inside the click gesture (required by browsers)
     });
   }
 

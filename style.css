@@ -205,6 +205,7 @@ header.nav.scrolled{
 }
 .cc-play:hover{transform:translateY(-2px);background:#1257a8}
 .cc-play.hidden{display:none}
+.cc-sound{opacity:.75;margin-left:2px}
 @media (prefers-reduced-motion:reduce){.cc-wave span,.cc-live{animation:none}.cc-msg{transition:none}}
 
 /* marquee */
