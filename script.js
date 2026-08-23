@@ -23,23 +23,65 @@
   },{threshold:.14, rootMargin:"0px 0px -40px 0px"});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
-  /* ===== Animated counters ===== */
+  /* ===== Animated counters — fire when scrolled into view ===== */
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function countText(el,value){
+    var pre=el.getAttribute('data-prefix')||'', suf=el.getAttribute('data-suffix')||'';
+    return pre+value.toLocaleString('en-US')+suf;
+  }
+  function setFinal(el){
+    el.textContent=countText(el,parseFloat(el.getAttribute('data-count'))||0);
+  }
   function animateCount(el){
-    var target=parseFloat(el.getAttribute('data-count')), dur=1500, start=null;
+    var target=parseFloat(el.getAttribute('data-count'))||0, dur=1400, start=null;
     function frame(t){
       if(!start) start=t;
       var p=Math.min((t-start)/dur,1);
       var eased=1-Math.pow(1-p,3); // easeOutCubic
-      el.textContent=Math.round(eased*target);
+      el.textContent=countText(el,Math.round(eased*target));
       if(p<1) requestAnimationFrame(frame);
-      else el.textContent=target;
+      else setFinal(el);
     }
     requestAnimationFrame(frame);
   }
-  var counters=document.querySelectorAll('[data-count]');
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce){ counters.forEach(function(c){ c.textContent=c.getAttribute('data-count'); }); }
-  else { counters.forEach(function(c){ animateCount(c); }); }
+
+  var counters=document.querySelectorAll('[data-count]'), cio=null;
+  if(reduce){ counters.forEach(setFinal); }
+  else{
+    cio=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ animateCount(e.target); cio.unobserve(e.target); }
+      });
+    },{threshold:.4});
+    counters.forEach(function(c){ cio.observe(c); });
+  }
+
+  /* ===== Case study tabs ===== */
+  var caseTabs=document.querySelectorAll('.case-tab'),
+      casePanels=document.querySelectorAll('.case-panel');
+
+  caseTabs.forEach(function(tab){
+    tab.addEventListener('click',function(){
+      var idx=tab.getAttribute('data-case');
+      caseTabs.forEach(function(t){
+        var on=(t===tab);
+        t.classList.toggle('active',on);
+        t.setAttribute('aria-selected',on);
+      });
+      casePanels.forEach(function(p){
+        var on=(p.getAttribute('data-panel')===idx);
+        p.classList.toggle('active',on);
+        p.hidden=!on;
+      });
+      // replay the headline number each time a panel is revealed
+      var num=document.querySelector('.case-panel.active [data-count]');
+      if(num){
+        if(cio) cio.unobserve(num);
+        if(reduce) setFinal(num); else animateCount(num);
+      }
+    });
+  });
 
   /* ===== FAQ accordion ===== */
   document.querySelectorAll('.q').forEach(function(q){

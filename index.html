@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body class="light">
 
@@ -318,64 +318,81 @@
 </section>
 
 <!-- ============================ RESULTS ============================ -->
-<section class="section-pad" id="results">
+<section class="section-tight" id="results">
   <div class="wrap">
-    <span class="tag reveal">Results</span>
-    <h2 class="h2 reveal" style="transition-delay:.05s">What happens when your clinic never misses a call.</h2>
-
-    <div class="cases">
-      <article class="case reveal">
-        <div class="yr">2025 · North York</div>
-        <h3>North York Dental Clinic</h3>
-        <div class="row"><div class="k">Challenge</div><div class="v">Missing 8–10 after-hours calls nightly.</div></div>
-        <div class="row"><div class="k">Solution</div><div class="v">AI Receptionist + Off-Hours Agent.</div></div>
-        <div class="row"><div class="k">Result</div><div class="v">47 calls handled · 22 appointments auto-booked · 15 new Google reviews in 60 days.</div></div>
-        <div class="metric">+$8,400 recovered revenue</div>
-      </article>
-
-      <article class="case reveal" style="transition-delay:.1s">
-        <div class="yr">2025 · Scarborough</div>
-        <h3>Scarborough Family Dentistry</h3>
-        <div class="row"><div class="k">Challenge</div><div class="v">Staff spending 3 hrs/day on CDCP questions.</div></div>
-        <div class="row"><div class="k">Solution</div><div class="v">CDCP FAQ Bot + AI Receptionist.</div></div>
-        <div class="row"><div class="k">Result</div><div class="v">90% of CDCP questions handled by AI · staff reclaimed 15 hrs/week · patient satisfaction up.</div></div>
-        <div class="metric">15 hrs/week saved</div>
-      </article>
+    <div class="sec-head reveal">
+      <div>
+        <span class="tag">Results</span>
+        <h2 class="h2 h2-sm">What happens when your clinic never misses a call.</h2>
+      </div>
+      <a href="#contact" class="btn btn-ghost sec-head-cta">Get results like these <span class="btn-arrow">→</span></a>
     </div>
 
-    <div class="results-cta reveal" style="transition-delay:.15s">
-      <a href="#contact" class="btn btn-solid">Get results like these <span class="btn-arrow">→</span></a>
+    <div class="case-tabs reveal" role="tablist" aria-label="Clinic case studies">
+      <button class="case-tab active" role="tab" id="caseTab0" aria-controls="casePanel0" aria-selected="true" data-case="0">North York Dental</button>
+      <button class="case-tab" role="tab" id="caseTab1" aria-controls="casePanel1" aria-selected="false" data-case="1">Scarborough Family Dentistry</button>
+    </div>
+
+    <div class="case-panels reveal" style="transition-delay:.06s">
+      <article class="case-panel active" id="casePanel0" role="tabpanel" aria-labelledby="caseTab0" data-panel="0">
+        <div class="cp-metric">
+          <div class="cp-num" data-count="8400" data-prefix="+$">+$8,400</div>
+          <div class="cp-metric-lbl">recovered revenue in 60 days</div>
+          <div class="cp-meta">2025 · North York</div>
+        </div>
+        <div class="cp-detail">
+          <div class="cp-row"><span class="cp-k">Challenge</span><span class="cp-v">Missing 8–10 after-hours calls nightly.</span></div>
+          <div class="cp-row"><span class="cp-k">Solution</span><span class="cp-v">AI Receptionist + Off-Hours Agent.</span></div>
+          <div class="cp-row"><span class="cp-k">Result</span><span class="cp-v">47 calls handled · 22 appointments auto-booked · 15 new Google reviews.</span></div>
+        </div>
+      </article>
+
+      <article class="case-panel" id="casePanel1" role="tabpanel" aria-labelledby="caseTab1" data-panel="1" hidden>
+        <div class="cp-metric">
+          <div class="cp-num" data-count="15" data-suffix=" hrs">15 hrs</div>
+          <div class="cp-metric-lbl">of staff time reclaimed every week</div>
+          <div class="cp-meta">2025 · Scarborough</div>
+        </div>
+        <div class="cp-detail">
+          <div class="cp-row"><span class="cp-k">Challenge</span><span class="cp-v">Staff spending 3 hrs/day on CDCP questions.</span></div>
+          <div class="cp-row"><span class="cp-k">Solution</span><span class="cp-v">CDCP FAQ Bot + AI Receptionist.</span></div>
+          <div class="cp-row"><span class="cp-k">Result</span><span class="cp-v">90% of CDCP questions handled by AI · patient satisfaction up.</span></div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
 <!-- ============================ ECONOMIC VALUE ============================ -->
-<section class="section-pad" id="value">
+<section class="section-tight" id="value">
   <div class="wrap">
-    <span class="tag reveal">The numbers</span>
-    <h2 class="h2 reveal" style="transition-delay:.05s">What NorthAI is actually worth to your clinic.</h2>
-    <p class="lead reveal" style="transition-delay:.1s">Every missed call and every minute spent answering CDCP questions is revenue leaving your practice. Here's what AI automation changes.</p>
+    <div class="sec-head reveal">
+      <div>
+        <span class="tag">The numbers</span>
+        <h2 class="h2 h2-sm">What NorthAI is actually worth to your clinic.</h2>
+      </div>
+    </div>
 
-    <div class="value-grid">
-      <article class="vcard reveal">
-        <div class="vnum">$8,400</div>
+    <div class="value-strip reveal" style="transition-delay:.06s">
+      <article class="vstat">
+        <div class="vnum"><span class="vunit">$</span><span data-count="8400">0</span></div>
         <div class="vlbl">Avg. monthly recovered revenue</div>
-        <div class="vsub">Per clinic, based on missed call conversions to booked appointments</div>
+        <div class="vsub">Missed calls converted into booked appointments</div>
       </article>
-      <article class="vcard reveal" style="transition-delay:.08s">
-        <div class="vnum">15 hrs</div>
+      <article class="vstat">
+        <div class="vnum"><span data-count="15">0</span><span class="vunit vword">hrs</span></div>
         <div class="vlbl">Staff time saved every week</div>
-        <div class="vsub">Freed from CDCP questions and after-hours phone coverage</div>
+        <div class="vsub">Freed from CDCP questions and phone coverage</div>
       </article>
-      <article class="vcard reveal" style="transition-delay:.12s">
-        <div class="vnum">73%</div>
+      <article class="vstat">
+        <div class="vnum"><span data-count="73">0</span><span class="vunit">%</span></div>
         <div class="vlbl">Missed calls converted</div>
-        <div class="vsub">After-hours callers converted to booked appointments via AI</div>
+        <div class="vsub">After-hours callers who book instead of hanging up</div>
       </article>
-      <article class="vcard reveal" style="transition-delay:.16s">
-        <div class="vnum">4×</div>
+      <article class="vstat">
+        <div class="vnum"><span data-count="4">0</span><span class="vunit">×</span></div>
         <div class="vlbl">Google review growth</div>
-        <div class="vsub">Average review volume increase within 90 days of Review Booster</div>
+        <div class="vsub">Average increase within 90 days of Review Booster</div>
       </article>
     </div>
 
@@ -408,12 +425,6 @@
       </div>
     </div>
 
-    <div class="value-statement reveal" style="transition-delay:.24s">
-      <blockquote>
-        "Every missed call after 5pm is a patient you didn't book. Every CDCP question your staff answers manually is <em>4 minutes lost.</em> NorthAI makes those numbers disappear."
-      </blockquote>
-      <a href="#pricing" class="btn btn-solid">See pricing <span class="btn-arrow">→</span></a>
-    </div>
   </div>
 </section>
 
@@ -673,6 +684,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=4"></script>
+<script src="script.js?v=5"></script>
 </body>
 </html>
