@@ -17,6 +17,36 @@
     a.addEventListener('click',function(){ menu.classList.remove('open'); burger.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
   });
 
+  /* ===== Live demo line: copy phone number to clipboard ===== */
+  var dlCopy=document.getElementById('dlCopy'), dlCopyLabel=document.getElementById('dlCopyLabel');
+  if(dlCopy){
+    var dlCopyTimer=null;
+    dlCopy.addEventListener('click',function(){
+      var number=dlCopy.getAttribute('data-display')||dlCopy.getAttribute('data-number')||'';
+      function showCopied(){
+        clearTimeout(dlCopyTimer);
+        dlCopy.classList.add('copied');
+        dlCopyLabel.textContent='Copied!';
+        dlCopyTimer=setTimeout(function(){
+          dlCopy.classList.remove('copied');
+          dlCopyLabel.textContent='Copy';
+        },1800);
+      }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(number).then(showCopied).catch(function(){});
+      } else {
+        try{
+          var ta=document.createElement('textarea');
+          ta.value=number; ta.style.position='fixed'; ta.style.opacity='0';
+          document.body.appendChild(ta); ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showCopied();
+        }catch(e){}
+      }
+    });
+  }
+
   /* ===== Scroll reveals (staggered via per-element transition-delay) ===== */
   var io=new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
