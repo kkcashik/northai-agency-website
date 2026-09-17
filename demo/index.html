@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Demo Website for GTA Businesses | NorthAI</title>
+<meta name="description" content="Get a free 2-page demo website for your local business in 48 hours. SEO and AI search optimized. No cost, no obligation. NorthAI serves the Greater Toronto Area.">
+<link rel="canonical" href="https://getnorthai.ca/demo">
+<meta name="theme-color" content="#141413">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Free Demo Website for GTA Businesses | NorthAI">
+<meta property="og:description" content="Get a free 2-page demo website for your local business in 48 hours. No cost, no obligation, no credit card.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://getnorthai.ca/demo">
+<meta property="og:locale" content="en_CA">
+
+<!-- LocalBusiness schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "NorthAI",
+  "description": "Digital agency building websites and AI automation for small businesses in the Greater Toronto Area.",
+  "url": "https://getnorthai.ca",
+  "telephone": "+1-365-360-6116",
+  "areaServed": {
+    "@type": "Place",
+    "name": "Greater Toronto Area, Ontario, Canada"
+  },
+  "priceRange": "$$",
+  "sameAs": ["https://getnorthai.ca"]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
+
+<style>
+:root{
+  --bg:#141413;
+  --text:#faf9f5;
+  --accent:#d97757;
+  --accent-2:#6a9bcc;
+  --green:#788c5d;
+  --input-bg:#1e1e1e;
+  --input-border:#333333;
+  --placeholder:#888888;
+  --error:#e05d5d;
+  --r-input:6px;
+  --r-btn:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Lora",Georgia,serif;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:"Poppins",system-ui,sans-serif;line-height:1.2}
+a{color:var(--accent-2)}
+
+.wrap{max-width:600px;margin:0 auto;padding:0 20px}
+
+/* ===== Hero ===== */
+.hero{padding:56px 0 36px;text-align:center}
+.brand{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:26px;
+}
+.brand svg{flex:0 0 auto}
+.hero h1{font-size:clamp(30px,7vw,42px);font-weight:700;margin-bottom:14px}
+.hero h1 em{color:var(--accent);font-style:normal}
+.hero .sub{color:rgba(250,249,245,.78);font-size:17px;max-width:46ch;margin:0 auto}
+.badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px}
+.badge{
+  font-family:"Poppins",sans-serif;font-size:12px;font-weight:500;
+  border:1px solid var(--input-border);border-radius:999px;
+  padding:6px 14px;color:rgba(250,249,245,.7);
+}
+
+/* ===== Form ===== */
+.form-card{padding:8px 0 10px}
+.field{margin-bottom:22px}
+label{
+  display:block;font-family:"Poppins",sans-serif;font-weight:500;
+  font-size:14px;margin-bottom:7px;
+}
+label .req{color:var(--accent)}
+label .opt{color:var(--placeholder);font-weight:400;font-size:12px}
+input[type=text],input[type=tel],input[type=email],select,textarea{
+  width:100%;background:var(--input-bg);border:1px solid var(--input-border);
+  border-radius:var(--r-input);color:var(--text);
+  font-family:"Lora",serif;font-size:16px;padding:13px 14px;
+  transition:border-color .25s ease,box-shadow .25s ease;
+  appearance:none;-webkit-appearance:none;
+}
+select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888888' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  padding-right:38px;cursor:pointer;
+}
+select:invalid{color:var(--placeholder)}
+select option{color:var(--text);background:var(--input-bg)}
+textarea{min-height:96px;resize:vertical}
+::placeholder{color:var(--placeholder);opacity:1}
+input:focus,select:focus,textarea:focus{
+  outline:none;border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(217,119,87,.22);
+}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--error)}
+.err{
+  display:none;color:var(--error);font-size:13px;margin-top:6px;
+  font-family:"Poppins",sans-serif;
+}
+.field.invalid .err{display:block}
+
+/* checkboxes */
+.checks{display:grid;grid-template-columns:1fr;gap:10px}
+.check{
+  display:flex;align-items:center;gap:11px;cursor:pointer;
+  background:var(--input-bg);border:1px solid var(--input-border);
+  border-radius:var(--r-input);padding:12px 14px;
+  transition:border-color .2s ease;
+  font-family:"Lora",serif;font-size:15px;font-weight:400;margin-bottom:0;
+}
+.check:hover{border-color:#4a4a4a}
+.check input{position:absolute;opacity:0;pointer-events:none}
+.check .box{
+  flex:0 0 auto;width:20px;height:20px;border-radius:5px;
+  border:1.5px solid var(--input-border);background:var(--bg);
+  display:grid;place-items:center;transition:all .2s ease;
+}
+.check .box svg{opacity:0;transform:scale(.6);transition:all .15s ease}
+.check input:checked + .box{background:var(--accent);border-color:var(--accent)}
+.check input:checked + .box svg{opacity:1;transform:scale(1)}
+.check input:focus-visible + .box{box-shadow:0 0 0 3px rgba(217,119,87,.3)}
+
+/* submit */
+.submit-btn{
+  width:100%;margin-top:6px;
+  background:var(--accent);color:#141413;border:0;border-radius:var(--r-btn);
+  font-family:"Poppins",sans-serif;font-weight:600;font-size:17px;
+  padding:16px 24px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:transform .2s ease,background .2s ease,opacity .2s ease;
+}
+.submit-btn:hover{transform:translateY(-2px);background:#e08662}
+.submit-btn:disabled{opacity:.65;cursor:not-allowed;transform:none}
+.spinner{
+  width:18px;height:18px;border-radius:50%;flex:0 0 auto;
+  border:2.5px solid rgba(20,20,19,.3);border-top-color:#141413;
+  animation:spin .7s linear infinite;display:none;
+}
+.submit-btn.loading .spinner{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.form-fail{
+  display:none;margin-top:14px;padding:13px 16px;border-radius:var(--r-input);
+  background:rgba(224,93,93,.12);border:1px solid rgba(224,93,93,.4);
+  color:#f3b8b8;font-size:14.5px;
+}
+.form-fail.show{display:block}
+.privacy{margin-top:14px;text-align:center;font-size:13px;color:var(--placeholder)}
+
+/* ===== Thank-you state ===== */
+.thanks{display:none;text-align:center;padding:46px 0 30px}
+.thanks.show{display:block;animation:fadeUp .5s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.thanks .tick{
+  width:64px;height:64px;border-radius:50%;margin:0 auto 22px;
+  background:rgba(120,140,93,.15);border:1.5px solid var(--green);
+  display:grid;place-items:center;color:var(--green);
+}
+.thanks h2{font-size:30px;margin-bottom:12px}
+.thanks p{color:rgba(250,249,245,.8);margin-bottom:6px}
+.thanks .txt{margin-top:16px;font-family:"Poppins",sans-serif;font-size:14px}
+.thanks .txt a{color:var(--accent);text-decoration:none;font-weight:600}
+
+/* ===== No-pressure section ===== */
+.chat{
+  margin:44px 0 0;padding:30px 24px;text-align:center;
+  border:1px solid var(--input-border);border-radius:12px;background:#191918;
+}
+.chat h2{font-size:20px;margin-bottom:8px}
+.chat p{color:rgba(250,249,245,.72);font-size:15px}
+.chat .call-btn{
+  display:inline-block;margin-top:18px;
+  background:transparent;color:var(--accent-2);
+  border:1.5px solid var(--accent-2);border-radius:var(--r-btn);
+  font-family:"Poppins",sans-serif;font-weight:600;font-size:15px;
+  padding:13px 26px;text-decoration:none;
+  transition:all .2s ease;
+}
+.chat .call-btn:hover{background:rgba(106,155,204,.12);transform:translateY(-2px)}
+.chat .sms{margin-top:14px;font-size:14px;color:var(--placeholder)}
+.chat .sms a{color:var(--text);text-decoration:none;font-weight:500}
+
+/* ===== Footer ===== */
+footer{
+  margin-top:56px;padding:28px 20px 34px;text-align:center;
+  border-top:1px solid var(--input-border);
+}
+footer .f-brand{font-family:"Poppins",sans-serif;font-weight:600;font-size:14px;color:var(--text)}
+footer .f-brand span{color:var(--accent)}
+footer p{font-size:13px;color:var(--placeholder);margin-top:4px}
+footer a{color:var(--placeholder);text-decoration:none}
+footer a:hover{color:var(--accent)}
+
+@media (min-width:520px){
+  .checks{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<main>
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="brand" aria-label="NorthAI">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <polygon points="12,2 15,12 12,10 9,12" fill="#d97757"/>
+          <polygon points="12,22 9,12 12,14 15,12" fill="#6a9bcc"/>
+        </svg>
+        North<span style="color:var(--text)">AI</span>
+      </span>
+      <h1>Get Your <em>Free</em> Demo Website</h1>
+      <p class="sub">Tell us about your business. We'll build you a custom 2-page demo website in 48 hours. No cost. No obligation. No credit card.</p>
+      <div class="badges" aria-hidden="true">
+        <span class="badge">✓ Ready in 48 hours</span>
+        <span class="badge">✓ 100% free</span>
+        <span class="badge">✓ GTA local</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== FORM ===== -->
+  <section class="form-card" aria-label="Demo website request form">
+    <div class="wrap">
+      <form id="demoForm" novalidate>
+
+        <div class="field" data-name="name">
+          <label for="f-name">Your Name <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="f-name" name="name" required placeholder="e.g. Ahmed Khan" autocomplete="name">
+          <p class="err" role="alert">Please enter your name.</p>
+        </div>
+
+        <div class="field" data-name="phone">
+          <label for="f-phone">Phone Number <span class="req" aria-hidden="true">*</span></label>
+          <input type="tel" id="f-phone" name="phone" required placeholder="(416) 555-0123" autocomplete="tel" inputmode="tel">
+          <p class="err" role="alert">Please enter a valid phone number.</p>
+        </div>
+
+        <div class="field" data-name="email">
+          <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+          <input type="email" id="f-email" name="email" required placeholder="you@yourbusiness.com" autocomplete="email" inputmode="email">
+          <p class="err" role="alert">Please enter a valid email address.</p>
+        </div>
+
+        <div class="field" data-name="business_name">
+          <label for="f-bname">Business Name <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="f-bname" name="business_name" required placeholder="e.g. Khan Plumbing" autocomplete="organization">
+          <p class="err" role="alert">Please enter your business name.</p>
+        </div>
+
+        <div class="field" data-name="business_type">
+          <label for="f-btype">Business Type <span class="req" aria-hidden="true">*</span></label>
+          <select id="f-btype" name="business_type" required>
+            <option value="" selected disabled>Select your business type…</option>
+            <option>Restaurant/Café</option>
+            <option>Salon/Barbershop</option>
+            <option>Spa/Aesthetics</option>
+            <option>Contractor/Renovation</option>
+            <option>Plumber</option>
+            <option>Electrician</option>
+            <option>HVAC</option>
+            <option>Cleaning Service</option>
+            <option>Landscaping/Snow Removal</option>
+            <option>Auto Repair/Body Shop</option>
+            <option>Car Detailing</option>
+            <option>Dental Clinic</option>
+            <option>Physiotherapy/Chiropractic</option>
+            <option>Pharmacy</option>
+            <option>Real Estate Agent</option>
+            <option>Accounting/Tax</option>
+            <option>Immigration Consultant</option>
+            <option>Lawyer/Paralegal</option>
+            <option>Tutoring/Driving School</option>
+            <option>Grocery/Convenience</option>
+            <option>Pet Grooming/Veterinary</option>
+            <option>Bakery/Catering</option>
+            <option>Florist</option>
+            <option>Dry Cleaner/Tailor</option>
+            <option>Photography/Videography</option>
+            <option>Gym/Fitness Studio</option>
+            <option>Other</option>
+          </select>
+          <p class="err" role="alert">Please select your business type.</p>
+        </div>
+
+        <div class="field" data-name="location">
+          <label for="f-loc">Business Location <span class="req" aria-hidden="true">*</span></label>
+          <select id="f-loc" name="location" required>
+            <option value="" selected disabled>Select your area…</option>
+            <option>Rexdale</option>
+            <option>Etobicoke</option>
+            <option>North York</option>
+            <option>Scarborough</option>
+            <option>Downtown Toronto</option>
+            <option>East York</option>
+            <option>York</option>
+            <option>Mississauga</option>
+            <option>Brampton</option>
+            <option>Vaughan</option>
+            <option>Markham</option>
+            <option>Richmond Hill</option>
+            <option>Ajax/Pickering</option>
+            <option>Oakville/Burlington</option>
+            <option>Hamilton</option>
+            <option>Other GTA Area</option>
+          </select>
+          <p class="err" role="alert">Please select your location.</p>
+        </div>
+
+        <div class="field" data-name="has_website">
+          <label for="f-web">Do you have a website? <span class="req" aria-hidden="true">*</span></label>
+          <select id="f-web" name="has_website" required>
+            <option value="" selected disabled>Select one…</option>
+            <option>No website at all</option>
+            <option>Yes but it is outdated</option>
+            <option>Yes but it does not show on Google</option>
+            <option>Not sure</option>
+          </select>
+          <p class="err" role="alert">Please select an option.</p>
+        </div>
+
+        <div class="field" data-name="services">
+          <label for="f-serv">What services does your business offer? <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="f-serv" name="services" required placeholder="e.g. Residential and commercial plumbing, drain cleaning, water heater installation"></textarea>
+          <p class="err" role="alert">Please tell us what your business offers.</p>
+        </div>
+
+        <div class="field">
+          <label id="lbl-interests">What else would help your business? <span class="opt">(optional)</span></label>
+          <div class="checks" role="group" aria-labelledby="lbl-interests">
+            <label class="check"><input type="checkbox" name="interests" value="Google Business Profile setup"><span class="box"><svg width="11" height="9" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#141413" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Google Business Profile setup</label>
+            <label class="check"><input type="checkbox" name="interests" value="Google and Meta paid ads"><span class="box"><svg width="11" height="9" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#141413" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Google &amp; Meta paid ads</label>
+            <label class="check"><input type="checkbox" name="interests" value="Automated review collection"><span class="box"><svg width="11" height="9" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#141413" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Automated review collection</label>
+            <label class="check"><input type="checkbox" name="interests" value="AI Receptionist 24/7"><span class="box"><svg width="11" height="9" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#141413" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>AI Receptionist 24/7</label>
+            <label class="check"><input type="checkbox" name="interests" value="Missed call text-back"><span class="box"><svg width="11" height="9" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#141413" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Missed call text-back</label>
+            <label class="check"><input type="checkbox" name="interests" value="Social media management"><span class="box"><svg width="11" height="9" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#141413" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Social media management</label>
+            <label class="check"><input type="checkbox" name="interests" value="Just the website for now"><span class="box"><svg width="11" height="9" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#141413" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Just the website for now</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-notes">Anything else? <span class="opt">(optional)</span></label>
+          <textarea id="f-notes" name="notes" placeholder="e.g. We have been in business 5 years and want more customers from Google"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span class="spinner" aria-hidden="true"></span>
+          <span id="btnText">Get My Free Demo Website</span>
+        </button>
+
+        <p class="form-fail" id="formFail" role="alert">
+          Something went wrong sending your request. Please text us instead at
+          <a href="sms:+13653606116" style="color:#f3b8b8;font-weight:600">(365) 360-6116</a> — we'll take it from there.
+        </p>
+
+        <p class="privacy">We only use your info to build your demo. No spam, ever.</p>
+      </form>
+
+      <!-- Thank-you state -->
+      <div class="thanks" id="thanks" aria-live="polite">
+        <div class="tick" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h2>You are all set!</h2>
+        <p>Your free demo website will be ready in <strong>48 hours</strong>.</p>
+        <p>We will send it to your email.</p>
+        <p class="txt">Questions? Text us at <a href="sms:+13653606116">(365) 360-6116</a></p>
+      </div>
+
+      <!-- No-pressure chat -->
+      <div class="chat">
+        <h2>Not sure if this is right for your business?</h2>
+        <p>No pressure. No sales pitch. Just a quick chat.</p>
+        <a class="call-btn" href="https://calendar.app.google/2aLvayTJjVg23mzR7" target="_blank" rel="noopener">Book a Free 10-Min Call</a>
+        <p class="sms">Or text us anytime: <a href="sms:+13653606116">(365) 360-6116</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="f-brand">Built by North<span>AI</span></div>
+  <p>Proudly serving the Greater Toronto Area</p>
+  <p><a href="https://getnorthai.ca">getnorthai.ca</a></p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ⇩ PASTE YOUR FULL GHL WEBHOOK URL HERE ⇩ */
+  var GHL_WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/iuQtTC39dqAU6qwodkSq/webhook-trigger/82";
+
+  var form=document.getElementById('demoForm'),
+      thanks=document.getElementById('thanks'),
+      btn=document.getElementById('submitBtn'),
+      btnText=document.getElementById('btnText'),
+      fail=document.getElementById('formFail');
+
+  function fieldWrap(el){ return el.closest('.field'); }
+
+  function validPhone(v){
+    var digits=v.replace(/\D/g,'');
+    return digits.length>=10 && digits.length<=11;
+  }
+
+  function validate(){
+    var firstBad=null;
+    form.querySelectorAll('.field[data-name]').forEach(function(f){
+      var input=f.querySelector('input,select,textarea');
+      var ok=true;
+      var v=(input.value||'').trim();
+      if(input.required && !v) ok=false;
+      else if(input.type==='email' && !input.checkValidity()) ok=false;
+      else if(input.type==='tel' && !validPhone(v)) ok=false;
+      f.classList.toggle('invalid',!ok);
+      if(!ok && !firstBad) firstBad=input;
+    });
+    if(firstBad){ firstBad.focus(); firstBad.scrollIntoView({behavior:'smooth',block:'center'}); }
+    return !firstBad;
+  }
+
+  // clear error as user fixes a field
+  form.addEventListener('input',function(e){
+    var f=fieldWrap(e.target);
+    if(f && f.classList.contains('invalid')) f.classList.remove('invalid');
+  });
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    fail.classList.remove('show');
+    if(!validate()) return;
+
+    var interests=[];
+    form.querySelectorAll('input[name=interests]:checked').forEach(function(c){ interests.push(c.value); });
+
+    var payload={
+      name: document.getElementById('f-name').value.trim(),
+      phone: document.getElementById('f-phone').value.trim(),
+      email: document.getElementById('f-email').value.trim(),
+      business_name: document.getElementById('f-bname').value.trim(),
+      business_type: document.getElementById('f-btype').value,
+      location: document.getElementById('f-loc').value,
+      has_website: document.getElementById('f-web').value,
+      services: document.getElementById('f-serv').value.trim(),
+      interests: interests,
+      notes: document.getElementById('f-notes').value.trim(),
+      source: "getnorthai.ca/demo",
+      submitted_at: new Date().toISOString()
+    };
+
+    btn.disabled=true;
+    btn.classList.add('loading');
+    btnText.textContent='Sending…';
+
+    fetch(GHL_WEBHOOK_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    }).then(function(res){
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      form.style.display='none';
+      thanks.classList.add('show');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }).catch(function(){
+      btn.disabled=false;
+      btn.classList.remove('loading');
+      btnText.textContent='Get My Free Demo Website';
+      fail.classList.add('show');
+    });
+  });
+})();
+</script>
+</body>
+</html>
