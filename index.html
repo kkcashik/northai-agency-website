@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=7">
 </head>
 <body class="light">
 
@@ -33,7 +33,7 @@
     <nav class="nav-links" aria-label="Primary">
       <a href="#services">Services</a>
       <a href="#process">Process</a>
-      <a href="#results">Results</a>
+      <a href="#results">Scenarios</a>
       <a href="#value">Value</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
@@ -49,7 +49,7 @@
     <ul>
       <li><a href="#services">Services</a></li>
       <li><a href="#process">Process</a></li>
-      <li><a href="#results">Results</a></li>
+      <li><a href="#results">Scenarios</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#faq">FAQ</a></li>
@@ -101,15 +101,46 @@
 
   <div class="wrap">
     <span class="badge reveal"><span class="dot" aria-hidden="true"></span>Built for Toronto dental clinics</span>
-    <h1 class="reveal" style="transition-delay:.05s">Stop losing patients<br><span class="accent">to voicemail.</span></h1>
-    <p class="lead reveal" style="transition-delay:.12s">NorthAI is the AI receptionist for dental clinics — she answers every call, books appointments, and never misses a patient, 24/7. Built in Toronto, fluent in CDCP.</p>
-    <div class="hero-ctas reveal" style="transition-delay:.18s">
-      <a href="#contact" class="btn btn-solid">Book a free demo <span class="btn-arrow">→</span></a>
-      <a href="#services" class="btn btn-ghost">See how it works</a>
+    <h1 class="reveal" style="transition-delay:.05s">Stop losing patients to voicemail.<br><span class="accent">Let NorthAI answer instead.</span></h1>
+    <p class="lead reveal" style="transition-delay:.12s">AI receptionist built for Toronto dental clinics. Available 24/7, fluent in English and French, and designed to handle real patient calls.</p>
+
+    <div class="hero-actions reveal" style="transition-delay:.16s">
+      <a href="tel:+13653606116" class="btn-live" id="heroLiveCta">
+        <span class="live-ic" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+        </span>
+        <span class="live-text">Hear NorthAI live</span>
+        <span class="live-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+        <span class="btn-arrow">→</span>
+      </a>
+      <a href="#contact" class="btn-outline">Book a free demo</a>
+      <a href="#services" class="link-quiet">See how it works <span class="btn-arrow">→</span></a>
+    </div>
+    <p class="hero-cta-note reveal" style="transition-delay:.18s">Call the live receptionist — no form required.</p>
+
+    <div class="demo-line reveal" style="transition-delay:.2s">
+      <span class="dl-ic" aria-hidden="true">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+      </span>
+      <span class="dl-body">
+        <span class="dl-label">Live demo line</span>
+        <span class="dl-number">(365) 360-6116</span>
+      </span>
+      <span class="dl-actions">
+        <button type="button" class="dl-copy" id="dlCopy" data-number="+13653606116" data-display="(365) 360-6116" aria-label="Copy the live demo phone number">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+          <span id="dlCopyLabel">Copy</span>
+        </button>
+        <a href="tel:+13653606116" class="dl-call">Call now</a>
+      </span>
     </div>
 
-    <!-- Interactive AI call demo card -->
-    <div class="call-card reveal" id="callDemo" style="transition-delay:.22s" aria-label="Demo of NorthAI handling a patient call">
+    <div class="trust-row reveal" style="transition-delay:.22s">
+      <span>24/7 answering</span><span class="trust-dot" aria-hidden="true">·</span><span>Appointment booking</span><span class="trust-dot" aria-hidden="true">·</span><span>Toronto-built</span><span class="trust-dot" aria-hidden="true">·</span><span>Bilingual support</span>
+    </div>
+
+    <!-- Interactive AI call demo card / receptionist preview -->
+    <div class="call-card reveal" id="callDemo" style="transition-delay:.26s" aria-label="Demo of NorthAI handling a patient call">
       <div class="cc-top">
         <div class="cc-id">
           <span class="cc-avatar" aria-hidden="true">
@@ -120,7 +151,10 @@
             <span class="cc-status" id="ccStatus"><span class="cc-live"></span><span id="ccStatusText">Incoming call · Saturday 9:04 PM</span></span>
           </div>
         </div>
-        <span class="cc-time" id="ccTime">00:00</span>
+        <div class="cc-top-right">
+          <span class="cc-available"><span class="cc-live"></span>Available now</span>
+          <span class="cc-time" id="ccTime">00:00</span>
+        </div>
       </div>
 
       <div class="cc-wave paused" id="ccWave" aria-hidden="true">
@@ -148,9 +182,9 @@
     </div>
 
     <div class="stats reveal" style="transition-delay:.24s">
-      <div class="stat"><div class="num"><span data-count="100">0</span><span class="suf">%</span></div><div class="lbl">Calls answered — day and night</div></div>
-      <div class="stat"><div class="num"><span class="suf">$</span><span data-count="8400" data-suffix="">0</span></div><div class="lbl">Avg. revenue recovered/mo</div></div>
-      <div class="stat"><div class="num"><span data-count="7">0</span> <span class="suf" style="font-size:.5em">days</span></div><div class="lbl">From signup to live</div></div>
+      <div class="stat"><div class="num">24<span class="suf">/7</span></div><div class="lbl">Call coverage — evenings, weekends, holidays</div></div>
+      <div class="stat"><div class="num"><span data-count="7">7</span> <span class="suf" style="font-size:.5em">days</span></div><div class="lbl">From signup to live</div></div>
+      <div class="stat"><div class="num">EN<span class="suf"> + </span>FR</div><div class="lbl">Bilingual patient conversations</div></div>
     </div>
 
     <div class="marquee-wrap reveal" style="transition-delay:.3s" aria-hidden="true">
@@ -166,8 +200,9 @@
 <section class="alert" aria-label="CDCP alert">
   <div class="wrap">
     <span class="pill-tag">The Toronto edge</span>
-    <p>6M Canadians now on CDCP. NorthAI is the only AI receptionist trained on it — your front desk gets every coverage answer right, instantly.</p>
-    <a href="#services">→ See how we fix this</a>
+    <p>The Canadian Dental Care Plan brought a wave of new patient questions. NorthAI is built around CDCP-related questions and each clinic's own policies, so the common ones get answered the moment a patient asks.</p>
+    <a href="#services">→ See how it works</a>
+    <p class="alert-note">NorthAI provides general information based on clinic-approved content. Coverage and treatment decisions should be confirmed by the clinic team.</p>
   </div>
 </section>
 
@@ -175,7 +210,7 @@
 <section class="section-pad" id="services">
   <div class="wrap">
     <span class="tag reveal">What we build</span>
-    <h2 class="h2 reveal" style="transition-delay:.05s">Four AI agents. One clinic. Zero missed patients.</h2>
+    <h2 class="h2 reveal" style="transition-delay:.05s">Four AI agents. One clinic. Fewer calls that go nowhere.</h2>
 
     <div class="bento">
       <article class="card big reveal">
@@ -188,11 +223,15 @@
           </div>
           <span class="ctag">Always on</span>
           <h3>AI Receptionist</h3>
-          <p>Answers every call, books straight into your schedule, and sends confirmations — while your team focuses on the patients in the chair.</p>
+          <p>Answers calls and helps patients book.</p>
+          <ul class="card-points">
+            <li><b>When it helps:</b> your line is busy, short-staffed, or ringing between patients.</li>
+            <li><b>Designed to support:</b> more calls reaching a real answer instead of voicemail.</li>
+          </ul>
           <span class="price-badge">From $1,000/mo</span>
         </div>
         <div class="mock mock-bookings" aria-hidden="true">
-          <div class="mock-head">Today's AI bookings</div>
+          <div class="mock-head">Example — a night of AI bookings</div>
           <div class="mock-row"><span class="mock-time">9:41 PM</span><div><b>Maria L. — Cleaning</b><span>Sat 10:30 AM · CDCP ✓</span></div><span class="mock-ok">Booked</span></div>
           <div class="mock-row"><span class="mock-time">11:07 PM</span><div><b>David K. — Toothache</b><span>Mon 8:00 AM · Urgent</span></div><span class="mock-ok">Booked</span></div>
           <div class="mock-row"><span class="mock-time">6:22 AM</span><div><b>Priya S. — New patient</b><span>Tue 2:15 PM · CDCP ✓</span></div><span class="mock-ok">Booked</span></div>
@@ -208,7 +247,11 @@
         </div>
         <span class="ctag">Nighttime</span>
         <h3>Off-Hours Agent</h3>
-        <p>Covers 6pm–8am, weekends, and holidays — every call answered, no voicemail.</p>
+        <p>Covers evenings, weekends, and holidays.</p>
+        <ul class="card-points">
+          <li><b>When it helps:</b> 6pm–8am, when nobody is at the front desk.</li>
+          <li><b>Designed to support:</b> after-hours callers who would otherwise hang up.</li>
+        </ul>
         <div class="mock mock-night" aria-hidden="true">
           <div class="mock-night-row"><span class="mock-dot"></span>11:38 PM · Call answered <b>✓</b></div>
           <div class="mock-night-row"><span class="mock-dot"></span>2:14 AM · FAQ resolved <b>✓</b></div>
@@ -224,12 +267,16 @@
           </svg>
         </div>
         <span class="ctag">Reputation</span>
-        <h3>Google Review Agent</h3>
-        <p>Requests a review after every visit, monitors sentiment, and grows your rating on autopilot.</p>
+        <h3>Review Agent</h3>
+        <p>Requests reviews after completed visits.</p>
+        <ul class="card-points">
+          <li><b>When it helps:</b> happy patients leave and never get asked.</li>
+          <li><b>Designed to support:</b> a steadier flow of recent Google reviews.</li>
+        </ul>
         <div class="mock mock-review" aria-hidden="true">
-          <div class="mock-review-top"><span class="mock-stars">★★★★★</span><span class="mock-badge">via AI request</span></div>
-          <p>"Booked at 9pm, seen the next morning. Amazing clinic!"</p>
-          <div class="mock-review-foot"><b>4.9</b> rating · <span class="mock-up">▲ 4× more reviews</span></div>
+          <div class="mock-review-top"><span class="mock-stars">★★★★★</span><span class="mock-badge">Example</span></div>
+          <p>"Booked at 9pm, seen the next morning."</p>
+          <div class="mock-review-foot">Sent automatically after a completed visit</div>
         </div>
       </article>
 
@@ -241,11 +288,15 @@
           </svg>
         </div>
         <span class="ctag">Coverage</span>
-        <h3>CDCP FAQ Bot</h3>
-        <p>Trained on current CDCP rules and your clinic's policies — instant, accurate coverage answers.</p>
+        <h3>CDCP FAQ Assistant</h3>
+        <p>Answers common clinic-approved questions, and escalates uncertain cases.</p>
+        <ul class="card-points">
+          <li><b>When it helps:</b> the same coverage questions come in all day.</li>
+          <li><b>Designed to support:</b> less repetition for staff, faster answers for patients.</li>
+        </ul>
         <div class="mock mock-chat" aria-hidden="true">
           <p class="mock-q">"Is my daughter covered for braces?"</p>
-          <p class="mock-a">"Children under 18 are eligible under CDCP. I can book a quick consult to confirm exactly what her plan covers."</p>
+          <p class="mock-a">"That depends on her plan details — let me book a quick consult so the clinic can confirm exactly what's covered."</p>
         </div>
       </article>
 
@@ -253,9 +304,10 @@
         <div class="card-copy">
           <span class="ctag">One system</span>
           <h3 style="margin-top:6px">Every agent reports into one weekly dashboard.</h3>
-          <p>No new software for your team to learn. You just see results.</p>
+          <p>No new software for your team to learn. You see what came in, what got booked, and what needed a human.</p>
         </div>
         <div class="mock mock-dash" aria-hidden="true">
+          <div class="mock-head">Example weekly summary</div>
           <div class="mock-tiles">
             <div class="mock-tile"><b>47</b><span>Calls handled</span></div>
             <div class="mock-tile"><b>22</b><span>Booked</span></div>
@@ -311,7 +363,7 @@
         <div class="n">04</div>
         <div class="si" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
         <h3>Patients served</h3>
-        <p>Full schedule, zero effort from your team.</p>
+        <p>Calls answered without extra work from your team.</p>
       </div>
     </div>
   </div>
@@ -322,44 +374,46 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <span class="tag">Results</span>
-        <h2 class="h2 h2-sm">What happens when your clinic never misses a call.</h2>
+        <span class="tag">Scenarios</span>
+        <h2 class="h2 h2-sm">The two situations NorthAI was built for.</h2>
       </div>
-      <a href="#contact" class="btn btn-ghost sec-head-cta">Get results like these <span class="btn-arrow">→</span></a>
+      <a href="#contact" class="btn btn-ghost sec-head-cta">Talk through your clinic <span class="btn-arrow">→</span></a>
     </div>
 
-    <div class="case-tabs reveal" role="tablist" aria-label="Clinic case studies">
-      <button class="case-tab active" role="tab" id="caseTab0" aria-controls="casePanel0" aria-selected="true" data-case="0">North York Dental</button>
-      <button class="case-tab" role="tab" id="caseTab1" aria-controls="casePanel1" aria-selected="false" data-case="1">Scarborough Family Dentistry</button>
+    <div class="case-tabs reveal" role="tablist" aria-label="Example clinic scenarios">
+      <button class="case-tab active" role="tab" id="caseTab0" aria-controls="casePanel0" aria-selected="true" data-case="0">Evening &amp; weekend calls</button>
+      <button class="case-tab" role="tab" id="caseTab1" aria-controls="casePanel1" aria-selected="false" data-case="1">Repeat CDCP questions</button>
     </div>
 
     <div class="case-panels reveal" style="transition-delay:.06s">
       <article class="case-panel active" id="casePanel0" role="tabpanel" aria-labelledby="caseTab0" data-panel="0">
         <div class="cp-metric">
-          <div class="cp-num" data-count="8400" data-prefix="+$">+$8,400</div>
-          <div class="cp-metric-lbl">recovered revenue in 60 days</div>
-          <div class="cp-meta">2025 · North York</div>
+          <div class="cp-num">6pm–8am</div>
+          <div class="cp-metric-lbl">the window most clinics can't staff</div>
+          <div class="cp-meta">Example scenario</div>
         </div>
         <div class="cp-detail">
-          <div class="cp-row"><span class="cp-k">Challenge</span><span class="cp-v">Missing 8–10 after-hours calls nightly.</span></div>
-          <div class="cp-row"><span class="cp-k">Solution</span><span class="cp-v">AI Receptionist + Off-Hours Agent.</span></div>
-          <div class="cp-row"><span class="cp-k">Result</span><span class="cp-v">47 calls handled · 22 appointments auto-booked · 15 new Google reviews.</span></div>
+          <div class="cp-row"><span class="cp-k">Situation</span><span class="cp-v">New patients call after the front desk has gone home, reach voicemail, and phone the next clinic on the list.</span></div>
+          <div class="cp-row"><span class="cp-k">What NorthAI does</span><span class="cp-v">Answers the call, handles common questions from your clinic-approved content, and books into your schedule.</span></div>
+          <div class="cp-row"><span class="cp-k">What to measure</span><span class="cp-v">Calls answered outside office hours, and how many become booked appointments.</span></div>
         </div>
       </article>
 
       <article class="case-panel" id="casePanel1" role="tabpanel" aria-labelledby="caseTab1" data-panel="1" hidden>
         <div class="cp-metric">
-          <div class="cp-num" data-count="15" data-suffix=" hrs">15 hrs</div>
-          <div class="cp-metric-lbl">of staff time reclaimed every week</div>
-          <div class="cp-meta">2025 · Scarborough</div>
+          <div class="cp-num">CDCP</div>
+          <div class="cp-metric-lbl">the questions your front desk repeats all day</div>
+          <div class="cp-meta">Example scenario</div>
         </div>
         <div class="cp-detail">
-          <div class="cp-row"><span class="cp-k">Challenge</span><span class="cp-v">Staff spending 3 hrs/day on CDCP questions.</span></div>
-          <div class="cp-row"><span class="cp-k">Solution</span><span class="cp-v">CDCP FAQ Bot + AI Receptionist.</span></div>
-          <div class="cp-row"><span class="cp-k">Result</span><span class="cp-v">90% of CDCP questions handled by AI · patient satisfaction up.</span></div>
+          <div class="cp-row"><span class="cp-k">Situation</span><span class="cp-v">Staff answer the same coverage and eligibility questions over and over, between patients in the chair.</span></div>
+          <div class="cp-row"><span class="cp-k">What NorthAI does</span><span class="cp-v">Answers the common ones from your clinic-approved content, and escalates anything uncertain to your team.</span></div>
+          <div class="cp-row"><span class="cp-k">What to measure</span><span class="cp-v">Questions resolved without staff time, and which ones get escalated.</span></div>
         </div>
       </article>
     </div>
+
+    <p class="section-note reveal">These are illustrative examples of how the system is designed to work — not client results. NorthAI is a new Toronto practice and we'd rather show you a live call than a number we can't back up.</p>
   </div>
 </section>
 
@@ -368,59 +422,61 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <span class="tag">The numbers</span>
-        <h2 class="h2 h2-sm">What NorthAI is actually worth to your clinic.</h2>
+        <span class="tag">What you get</span>
+        <h2 class="h2 h2-sm">What NorthAI actually does for your clinic.</h2>
       </div>
     </div>
 
     <div class="value-strip reveal" style="transition-delay:.06s">
       <article class="vstat">
-        <div class="vnum"><span class="vunit">$</span><span data-count="8400">0</span></div>
-        <div class="vlbl">Avg. monthly recovered revenue</div>
-        <div class="vsub">Missed calls converted into booked appointments</div>
+        <div class="vnum">24<span class="vunit">/7</span></div>
+        <div class="vlbl">Calls answered around the clock</div>
+        <div class="vsub">Evenings, weekends, and holidays — instead of voicemail</div>
       </article>
       <article class="vstat">
-        <div class="vnum"><span data-count="15">0</span><span class="vunit vword">hrs</span></div>
-        <div class="vlbl">Staff time saved every week</div>
-        <div class="vsub">Freed from CDCP questions and phone coverage</div>
+        <div class="vnum">7<span class="vunit vword">days</span></div>
+        <div class="vlbl">From signup to live</div>
+        <div class="vsub">We build it, train it, and connect it to your line</div>
       </article>
       <article class="vstat">
-        <div class="vnum"><span data-count="73">0</span><span class="vunit">%</span></div>
-        <div class="vlbl">Missed calls converted</div>
-        <div class="vsub">After-hours callers who book instead of hanging up</div>
+        <div class="vnum">EN<span class="vunit"> + </span>FR</div>
+        <div class="vlbl">Bilingual patient conversations</div>
+        <div class="vsub">Answers in English or French, based on your content</div>
       </article>
       <article class="vstat">
-        <div class="vnum"><span data-count="4">0</span><span class="vunit">×</span></div>
-        <div class="vlbl">Google review growth</div>
-        <div class="vsub">Average increase within 90 days of Review Booster</div>
+        <div class="vnum">Toronto</div>
+        <div class="vlbl">Local, human support</div>
+        <div class="vsub">Built here, and you always reach a person</div>
       </article>
     </div>
 
-    <!-- ROI Calculator -->
+    <!-- Opportunity estimator -->
     <div class="roi reveal" style="transition-delay:.2s">
       <div class="roi-inputs">
-        <h3 class="roi-title">What are missed calls costing your <span class="accent">clinic?</span></h3>
+        <h3 class="roi-title">Estimate what missed calls cost your <span class="accent">clinic.</span></h3>
+        <p class="roi-intro">Enter your own numbers — nothing is sent anywhere, the math updates as you type.</p>
         <div class="roi-field">
-          <label for="roiCalls">New patient calls / month</label>
-          <span class="roi-hint">Inbound new-patient inquiries</span>
-          <input type="number" id="roiCalls" value="40" min="0" inputmode="numeric">
+          <label for="roiCalls">New-patient calls per month</label>
+          <span class="roi-hint">Roughly how many new patients phone your clinic each month</span>
+          <input type="number" id="roiCalls" value="40" min="0" max="10000" step="1" inputmode="numeric">
         </div>
         <div class="roi-field">
-          <label for="roiMissed">% missed or unanswered</label>
-          <span class="roi-hint">Industry avg. ~30%</span>
-          <input type="number" id="roiMissed" value="30" min="0" max="100" inputmode="numeric">
+          <label for="roiMissed">Estimated missed-call percentage</label>
+          <span class="roi-hint">Share of those calls that go unanswered or to voicemail</span>
+          <input type="number" id="roiMissed" value="30" min="0" max="100" step="1" inputmode="numeric">
         </div>
         <div class="roi-field">
-          <label for="roiValue">New patient value ($)</label>
-          <span class="roi-hint">First-year production · avg. $1,200</span>
-          <input type="number" id="roiValue" value="1200" min="0" inputmode="numeric">
+          <label for="roiValue">Average first-year patient value ($)</label>
+          <span class="roi-hint">What a new patient is typically worth in their first year</span>
+          <input type="number" id="roiValue" value="1200" min="0" max="100000" step="1" inputmode="numeric">
         </div>
       </div>
 
       <div class="roi-result">
-        <span class="roi-label">You're leaving on the table</span>
-        <div class="roi-amount">~<span id="roiLost">14,400</span><small>/month</small></div>
-        <p class="roi-sub">NorthAI recovers up to <b id="roiRecovered">$10,512/mo</b> of this — many times the cost of the service.</p>
+        <span class="roi-label">Estimated monthly opportunity</span>
+        <div class="roi-amount">~$<span id="roiLost">14,400</span><small>/month</small></div>
+        <p class="roi-sub">That's <b id="roiCallCount">12 missed calls</b> a month that never reach a person. NorthAI is built to answer them.</p>
+        <p class="roi-note">Estimated opportunity, not guaranteed revenue. Based entirely on the figures you enter above.</p>
         <a href="#contact" class="btn btn-solid">Book a free demo <span class="btn-arrow">→</span></a>
       </div>
     </div>
@@ -441,6 +497,7 @@
         <div class="pname">Review Booster</div>
         <div class="pcost">$450<small>/mo</small></div>
         <p class="pdesc">Grow your reputation with AI-powered review management and monthly audits.</p>
+        <p class="pfor"><b>Best for:</b> clinics whose phones are covered, but whose Google reviews aren't keeping up.</p>
         <ul>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Google Review AI Agent</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Post-visit SMS + email review requests</li>
@@ -457,6 +514,7 @@
         <div class="pname">Starter</div>
         <div class="pcost">$750<small>/mo</small></div>
         <p class="pdesc">Essential AI coverage for clinics that need 24/7 patient communication.</p>
+        <p class="pfor"><b>Best for:</b> a solo clinic that mainly loses calls in the evenings and on weekends.</p>
         <ul>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>After-hours call handler</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>CDCP FAQ answers</li>
@@ -475,6 +533,7 @@
         <div class="pname">AI Receptionist</div>
         <div class="pcost">$1,000<small>/mo</small></div>
         <p class="pdesc">The full AI front desk — answering calls, booking patients, and growing your reviews.</p>
+        <p class="pfor"><b>Best for:</b> a busy clinic that wants every call answered and booked, day or night.</p>
         <ul>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Everything in Starter</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Google review agent</li>
@@ -493,6 +552,7 @@
         <div class="pname">Full Practice</div>
         <div class="pcost">Custom</div>
         <p class="pdesc">Built for multi-location clinics that need enterprise-grade AI automation.</p>
+        <p class="pfor"><b>Best for:</b> multi-location practices that need custom integrations and shared reporting.</p>
         <ul>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Multi-location support</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Custom integrations</li>
@@ -519,23 +579,52 @@
   </div>
 </section>
 
-<!-- ============================ TESTIMONIALS ============================ -->
+<!-- ============================ WHY US / STRAIGHT TALK ============================ -->
 <section class="section-pad">
   <div class="wrap">
-    <span class="tag reveal">What clinics say</span>
-    <h2 class="h2 reveal" style="transition-delay:.05s">Trusted by Toronto dental clinics</h2>
-  </div>
-  <div class="tmarquee-wrap reveal">
-    <div class="tmarquee">
-      <article class="tcard"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>"We were missing 8–10 calls every evening. NorthAI handles them all now. We wake up to a full schedule."</p><div class="who"><b>Dr. Sarah M.</b> — North York</div></article>
-      <article class="tcard"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>"My front desk was drowning in CDCP questions. The AI handles 90% of them. Staff are so much less stressed."</p><div class="who"><b>Dr. Ahmed K.</b> — Scarborough</div></article>
-      <article class="tcard"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>"Set up was painless. Within the first week we booked 6 appointments we would have 100% missed."</p><div class="who"><b>Dr. Lisa T.</b> — Etobicoke</div></article>
-      <article class="tcard"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>"Best investment I've made for the practice. It literally pays for itself every week."</p><div class="who"><b>Dr. James P.</b> — Mississauga</div></article>
-      <!-- duplicate set for seamless loop -->
-      <article class="tcard" aria-hidden="true"><div class="stars">★★★★★</div><p>"We were missing 8–10 calls every evening. NorthAI handles them all now. We wake up to a full schedule."</p><div class="who"><b>Dr. Sarah M.</b> — North York</div></article>
-      <article class="tcard" aria-hidden="true"><div class="stars">★★★★★</div><p>"My front desk was drowning in CDCP questions. The AI handles 90% of them. Staff are so much less stressed."</p><div class="who"><b>Dr. Ahmed K.</b> — Scarborough</div></article>
-      <article class="tcard" aria-hidden="true"><div class="stars">★★★★★</div><p>"Set up was painless. Within the first week we booked 6 appointments we would have 100% missed."</p><div class="who"><b>Dr. Lisa T.</b> — Etobicoke</div></article>
-      <article class="tcard" aria-hidden="true"><div class="stars">★★★★★</div><p>"Best investment I've made for the practice. It literally pays for itself every week."</p><div class="who"><b>Dr. James P.</b> — Mississauga</div></article>
+    <span class="tag reveal">Straight talk</span>
+    <h2 class="h2 reveal" style="transition-delay:.05s">We're new. Here's why that isn't a risk.</h2>
+    <p class="lead reveal" style="transition-delay:.08s">NorthAI is a young Toronto practice, so we don't have a wall of client logos to show you. What we can do is let you hear the product and keep the commitment small.</p>
+
+    <div class="tgrid">
+      <article class="tcard reveal">
+        <div class="tc-ic" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+        </div>
+        <h3>Hear it before you pay</h3>
+        <p>Call the live demo line yourself, any time. No form, no sales call first — you judge the voice before we ever talk money.</p>
+      </article>
+      <article class="tcard reveal" style="transition-delay:.06s">
+        <div class="tc-ic" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18"/><rect x="3" y="4" width="18" height="17" rx="2"/></svg>
+        </div>
+        <h3>No long-term contract</h3>
+        <p>Month to month. Cancel with 30 days' notice. If it isn't earning its place at your front desk, you stop.</p>
+      </article>
+      <article class="tcard reveal" style="transition-delay:.12s">
+        <div class="tc-ic" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-7-10a7 7 0 0 1 14 0c0 5.6-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+        </div>
+        <h3>One city, one industry</h3>
+        <p>Toronto dental clinics only — not a general-purpose call bot pointed at your practice. CDCP questions are the whole point.</p>
+      </article>
+      <article class="tcard reveal" style="transition-delay:.18s">
+        <div class="tc-ic" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        </div>
+        <h3>You get a person</h3>
+        <p>You work directly with the founder, not a ticket queue. Early clients get more of my attention, not less.</p>
+      </article>
+    </div>
+
+    <div class="trust-strip reveal">
+      <span class="ts-item">Toronto-based</span>
+      <span class="ts-sep" aria-hidden="true">·</span>
+      <span class="ts-item">Dental-focused</span>
+      <span class="ts-sep" aria-hidden="true">·</span>
+      <span class="ts-item">7-day setup</span>
+      <span class="ts-sep" aria-hidden="true">·</span>
+      <span class="ts-item">Human support</span>
     </div>
   </div>
 </section>
@@ -548,28 +637,28 @@
 
     <div class="faq">
       <div class="q reveal">
-        <button class="q-btn" aria-expanded="false">What is an AI receptionist exactly?<span class="q-ic" aria-hidden="true"></span></button>
-        <div class="q-body"><p>It's a voice and text agent that answers your clinic's calls and messages automatically. It speaks naturally, answers patient questions, and books appointments straight into your schedule — just like a great front-desk team member who never clocks out.</p></div>
+        <button class="q-btn" aria-expanded="false" aria-controls="qBody1" id="qBtn1">What is an AI receptionist exactly?<span class="q-ic" aria-hidden="true"></span></button>
+        <div class="q-body" id="qBody1" role="region" aria-labelledby="qBtn1"><p>It's a voice and text agent that answers your clinic's calls and messages automatically. It speaks naturally, answers patient questions, and books appointments straight into your schedule — just like a great front-desk team member who never clocks out.</p></div>
       </div>
       <div class="q reveal">
-        <button class="q-btn" aria-expanded="false">Do I need any technical knowledge to use this?<span class="q-ic" aria-hidden="true"></span></button>
-        <div class="q-body"><p>None at all. We handle the entire setup, training, and connection for you. You'll get a simple weekly dashboard, but there's no software for you or your staff to learn or maintain.</p></div>
+        <button class="q-btn" aria-expanded="false" aria-controls="qBody2" id="qBtn2">Do I need any technical knowledge to use this?<span class="q-ic" aria-hidden="true"></span></button>
+        <div class="q-body" id="qBody2" role="region" aria-labelledby="qBtn2"><p>None at all. We handle the entire setup, training, and connection for you. You'll get a simple weekly dashboard, but there's no software for you or your staff to learn or maintain.</p></div>
       </div>
       <div class="q reveal">
-        <button class="q-btn" aria-expanded="false">How does it handle CDCP questions?<span class="q-ic" aria-hidden="true"></span></button>
-        <div class="q-body"><p>We train the AI on the current Canadian Dental Care Plan rules and your clinic's specific policies. It answers eligibility, coverage, and billing questions instantly and accurately — and escalates anything unusual to your team.</p></div>
+        <button class="q-btn" aria-expanded="false" aria-controls="qBody3" id="qBtn3">How does it handle CDCP questions?<span class="q-ic" aria-hidden="true"></span></button>
+        <div class="q-body" id="qBody3" role="region" aria-labelledby="qBtn3"><p>We build it around CDCP-related questions and your clinic's own policies, using content your team approves. It handles the common eligibility and coverage questions right away, and escalates anything it isn't confident about to a human. Final coverage and treatment decisions always sit with your clinic.</p></div>
       </div>
       <div class="q reveal">
-        <button class="q-btn" aria-expanded="false">Will it sound robotic to my patients?<span class="q-ic" aria-hidden="true"></span></button>
-        <div class="q-body"><p>No. We use natural, warm voice models tuned to your clinic's tone. Most patients can't tell, and the ones who can appreciate getting a helpful answer at 9pm instead of voicemail.</p></div>
+        <button class="q-btn" aria-expanded="false" aria-controls="qBody4" id="qBtn4">Will it sound robotic to my patients?<span class="q-ic" aria-hidden="true"></span></button>
+        <div class="q-body" id="qBody4" role="region" aria-labelledby="qBtn4"><p>We use natural, warm voice models tuned to your clinic's tone, and the agent says it's an assistant when a caller asks. Judge it for yourself before you commit — call the demo line at (365) 360-6116 and hear exactly what your patients would hear.</p></div>
       </div>
       <div class="q reveal">
-        <button class="q-btn" aria-expanded="false">What happens during the 7-day setup?<span class="q-ic" aria-hidden="true"></span></button>
-        <div class="q-body"><p>Day 1–2 we learn your clinic and services. Day 3–5 we build and train your agents. Day 6–7 we connect to your phone line, test thoroughly, and go live. You're running 24/7 by the end of week one.</p></div>
+        <button class="q-btn" aria-expanded="false" aria-controls="qBody5" id="qBtn5">What happens during the 7-day setup?<span class="q-ic" aria-hidden="true"></span></button>
+        <div class="q-body" id="qBody5" role="region" aria-labelledby="qBtn5"><p>Day 1–2 we learn your clinic and services. Day 3–5 we build and train your agents. Day 6–7 we connect to your phone line, test thoroughly, and go live. You're running 24/7 by the end of week one.</p></div>
       </div>
       <div class="q reveal">
-        <button class="q-btn" aria-expanded="false">Can I pause or cancel anytime?<span class="q-ic" aria-hidden="true"></span></button>
-        <div class="q-body"><p>Yes. There are no long-term contracts. You can pause or cancel any time with 30 days' notice — though most clinics stay because the system pays for itself within the first few weeks.</p></div>
+        <button class="q-btn" aria-expanded="false" aria-controls="qBody6" id="qBtn6">Can I pause or cancel anytime?<span class="q-ic" aria-hidden="true"></span></button>
+        <div class="q-body" id="qBody6" role="region" aria-labelledby="qBtn6"><p>Yes. There are no long-term contracts and no cancellation fee — you can pause or cancel any time with 30 days' notice. We'd rather earn the next month than lock you into a year.</p></div>
       </div>
     </div>
   </div>
@@ -603,30 +692,37 @@
 <!-- ============================ CTA ============================ -->
 <section class="cta section-pad" id="contact">
   <div class="wrap">
-    <h2 class="reveal">Ready to stop losing after-hours patients?</h2>
-    <p class="lead reveal" style="transition-delay:.06s">Book a free 20-minute demo. We'll show you exactly how it works for your clinic.</p>
+    <h2 class="reveal">Book a free 20-minute clinic demo</h2>
+    <p class="lead reveal" style="transition-delay:.06s">See how NorthAI could handle your calls, answer common questions, and help your team book appointments.</p>
     <form class="cform cform-full reveal" id="demoForm" style="transition-delay:.12s" novalidate>
       <div class="cf-grid">
         <div class="cf-field">
-          <label for="leadName" class="sr-only">Your name</label>
-          <input type="text" id="leadName" name="name" placeholder="Your name" required autocomplete="name">
+          <label for="leadName">Your name <span class="cf-req" aria-hidden="true">*</span></label>
+          <input type="text" id="leadName" name="name" placeholder="Dr. Jane Smith" required autocomplete="name" aria-describedby="leadNameErr">
+          <span class="cf-err" id="leadNameErr"></span>
         </div>
         <div class="cf-field">
-          <label for="leadClinic" class="sr-only">Clinic name</label>
-          <input type="text" id="leadClinic" name="clinic" placeholder="Clinic name" autocomplete="organization">
+          <label for="leadClinic">Clinic name <span class="cf-opt">(optional)</span></label>
+          <input type="text" id="leadClinic" name="clinic" placeholder="Bloor Street Dental" autocomplete="organization">
         </div>
         <div class="cf-field">
-          <label for="email" class="sr-only">Your email address</label>
-          <input type="email" id="email" name="email" placeholder="you@yourclinic.ca" required autocomplete="email">
+          <label for="email">Email <span class="cf-req" aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" placeholder="you@yourclinic.ca" required autocomplete="email" aria-describedby="emailErr">
+          <span class="cf-err" id="emailErr"></span>
         </div>
         <div class="cf-field">
-          <label for="leadPhone" class="sr-only">Phone number</label>
+          <label for="leadPhone">Phone <span class="cf-opt">(optional)</span></label>
           <input type="tel" id="leadPhone" name="phone" placeholder="(416) 555-0123" autocomplete="tel">
         </div>
       </div>
-      <button type="submit" class="btn btn-solid cf-submit">Book my free demo <span class="btn-arrow">→</span></button>
+      <button type="submit" class="btn btn-solid cf-submit" id="formSubmit">
+        <span class="cf-submit-label">Book my free demo</span>
+        <span class="btn-arrow">→</span>
+      </button>
+      <p class="cf-required-note">* Required. We'll only use this to contact you about a demo.</p>
     </form>
     <p class="form-ok" id="formOk" role="status">Thanks! We'll be in touch within 24 hours.</p>
+    <p class="form-err" id="formErr" role="alert">That didn't go through. Please email <a href="mailto:hello@getnorthai.ca">hello@getnorthai.ca</a> or call <a href="tel:+13653606116">(365) 360-6116</a> and we'll set the demo up directly.</p>
     <div class="chips reveal" style="transition-delay:.18s">
       <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>No commitment</span>
       <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>No tech knowledge needed</span>
@@ -652,11 +748,11 @@
         <p style="margin-top:10px">Toronto, Ontario, Canada</p>
       </div>
       <div class="fcol">
-        <h4>Navigate</h4>
+        <h3>Navigate</h3>
         <nav class="flinks" aria-label="Footer">
           <a href="#services">Services</a>
           <a href="#process">Process</a>
-          <a href="#results">Results</a>
+          <a href="#results">Scenarios</a>
           <a href="#value">Value</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
@@ -664,8 +760,9 @@
         </nav>
       </div>
       <div class="fcol fcontact">
-        <h4>Get in touch</h4>
+        <h3>Get in touch</h3>
         <a href="mailto:hello@getnorthai.ca">hello@getnorthai.ca</a>
+        <a href="tel:+13653606116">📞 (365) 360-6116 — try the live demo</a>
         <a href="https://getnorthai.ca">getnorthai.ca</a>
         <div class="socials">
           <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="#85B7EB"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.3 8h4.4v13H.3zM8 8h4.2v1.8h.06c.6-1.1 2-2.2 4.04-2.2 4.3 0 5.1 2.8 5.1 6.5V21h-4.4v-5.8c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1V21H8z"/></svg></a>
@@ -684,6 +781,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=5"></script>
+<script src="script.js?v=7"></script>
 </body>
 </html>

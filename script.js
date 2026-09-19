@@ -17,6 +17,36 @@
     a.addEventListener('click',function(){ menu.classList.remove('open'); burger.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
   });
 
+  /* ===== Live demo line: copy phone number to clipboard ===== */
+  var dlCopy=document.getElementById('dlCopy'), dlCopyLabel=document.getElementById('dlCopyLabel');
+  if(dlCopy){
+    var dlCopyTimer=null;
+    dlCopy.addEventListener('click',function(){
+      var number=dlCopy.getAttribute('data-display')||dlCopy.getAttribute('data-number')||'';
+      function showCopied(){
+        clearTimeout(dlCopyTimer);
+        dlCopy.classList.add('copied');
+        dlCopyLabel.textContent='Copied!';
+        dlCopyTimer=setTimeout(function(){
+          dlCopy.classList.remove('copied');
+          dlCopyLabel.textContent='Copy';
+        },1800);
+      }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(number).then(showCopied).catch(function(){});
+      } else {
+        try{
+          var ta=document.createElement('textarea');
+          ta.value=number; ta.style.position='fixed'; ta.style.opacity='0';
+          document.body.appendChild(ta); ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showCopied();
+        }catch(e){}
+      }
+    });
+  }
+
   /* ===== Scroll reveals (staggered via per-element transition-delay) ===== */
   var io=new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
@@ -47,13 +77,15 @@
   }
 
   var counters=document.querySelectorAll('[data-count]'), cio=null;
-  if(reduce){ counters.forEach(setFinal); }
-  else{
+  // Markup carries the final value, so a counter that never animates still reads
+  // correctly instead of getting stuck on a placeholder zero.
+  counters.forEach(setFinal);
+  if(!reduce){
     cio=new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if(e.isIntersecting){ animateCount(e.target); cio.unobserve(e.target); }
       });
-    },{threshold:.4});
+    },{threshold:0, rootMargin:"0px 0px -10% 0px"});
     counters.forEach(function(c){ cio.observe(c); });
   }
 
@@ -96,60 +128,117 @@
   /* ===== Demo form → GHL Inbound Webhook ===== */
   var GHL_WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/iuQtTC39dqAU6qwodkSq/webhook-trigger/b8f4b7de-08e4-4d5e-91d2-53ec38da9a38";
 
-  var form=document.getElementById('demoForm'), ok=document.getElementById('formOk');
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var name=document.getElementById('leadName'),
-        clinic=document.getElementById('leadClinic'),
-        email=document.getElementById('email'),
-        phone=document.getElementById('leadPhone');
-    if(name && !name.value.trim()){ name.focus(); return; }
-    if(!email.value || !email.checkValidity()){ email.focus(); return; }
+  var form=document.getElementById('demoForm'),
+      ok=document.getElementById('formOk'),
+      formErr=document.getElementById('formErr'),
+      submitBtn=document.getElementById('formSubmit');
 
-    var payload={
-      name: name ? name.value.trim() : "",
-      clinic: clinic ? clinic.value.trim() : "",
-      email: email.value,
-      phone: phone ? phone.value.trim() : "",
-      source: "NorthAI website",
-      page: location.href,
-      submitted_at: new Date().toISOString()
-    };
+  function setFieldError(input,msg){
+    var box=document.getElementById(input.id+'Err');
+    if(box) box.textContent=msg||'';
+    input.classList.toggle('invalid',!!msg);
+    input.setAttribute('aria-invalid',msg?'true':'false');
+  }
 
-    form.style.display='none';
-    ok.classList.add('show');
+  if(form){
+    // Clear a field's error as soon as the person starts correcting it.
+    ['leadName','email'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el) el.addEventListener('input',function(){ if(el.classList.contains('invalid')) setFieldError(el,''); });
+    });
 
-    if(GHL_WEBHOOK_URL.indexOf('http')===0){
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var name=document.getElementById('leadName'),
+          clinic=document.getElementById('leadClinic'),
+          email=document.getElementById('email'),
+          phone=document.getElementById('leadPhone');
+
+      var firstBad=null;
+      if(name && !name.value.trim()){ setFieldError(name,'Please enter your name.'); firstBad=firstBad||name; }
+      else if(name){ setFieldError(name,''); }
+      if(!email.value.trim()){ setFieldError(email,'Please enter your email.'); firstBad=firstBad||email; }
+      else if(!email.checkValidity()){ setFieldError(email,'Please enter a valid email address.'); firstBad=firstBad||email; }
+      else { setFieldError(email,''); }
+      if(firstBad){ firstBad.focus(); return; }
+
+      var payload={
+        name: name ? name.value.trim() : "",
+        clinic: clinic ? clinic.value.trim() : "",
+        email: email.value,
+        phone: phone ? phone.value.trim() : "",
+        source: "NorthAI website",
+        page: location.href,
+        submitted_at: new Date().toISOString()
+      };
+
+      formErr.classList.remove('show');
+      submitBtn.disabled=true;
+      submitBtn.classList.add('loading');
+      submitBtn.querySelector('.cf-submit-label').textContent='Sending…';
+
+      function succeed(){
+        form.style.display='none';
+        ok.classList.add('show');
+      }
+      function fail(){
+        submitBtn.disabled=false;
+        submitBtn.classList.remove('loading');
+        submitBtn.querySelector('.cf-submit-label').textContent='Book my free demo';
+        formErr.classList.add('show');
+      }
+
+      if(GHL_WEBHOOK_URL.indexOf('http')!==0){ succeed(); return; }
+
       fetch(GHL_WEBHOOK_URL,{
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify(payload)
-      }).catch(function(){ /* fails silently */ });
-    }
-  });
+      }).then(function(res){
+        if(res && res.ok===false) fail(); else succeed();
+      }).catch(fail);
+    });
+  }
 
   /* ===== ROI calculator ===== */
   var roiCalls=document.getElementById('roiCalls'),
       roiMissed=document.getElementById('roiMissed'),
       roiValue=document.getElementById('roiValue'),
       roiLost=document.getElementById('roiLost'),
-      roiRecovered=document.getElementById('roiRecovered');
+      roiCallCount=document.getElementById('roiCallCount');
 
   function fmt(n){ return Math.round(n).toLocaleString('en-US'); }
-  var RECOVERY_RATE=0.73; // NorthAI converts ~73% of missed calls
+
+  // Clamps to the field's own min/max so negatives and typos can't produce
+  // a nonsense estimate.
+  function fieldValue(el){
+    var n=parseFloat(el.value);
+    if(!isFinite(n)) return 0;
+    var min=parseFloat(el.min), max=parseFloat(el.max);
+    if(isFinite(min)) n=Math.max(n,min);
+    if(isFinite(max)) n=Math.min(n,max);
+    return n;
+  }
 
   function calcRoi(){
     if(!roiCalls) return;
-    var calls=parseFloat(roiCalls.value)||0,
-        missed=Math.min(parseFloat(roiMissed.value)||0,100),
-        value=parseFloat(roiValue.value)||0;
-    var lost=calls*(missed/100)*value;
-    roiLost.textContent=fmt(lost);
-    roiRecovered.textContent='$'+fmt(lost*RECOVERY_RATE)+'/mo';
+    var calls=fieldValue(roiCalls),
+        missed=fieldValue(roiMissed),
+        value=fieldValue(roiValue);
+    var missedCalls=calls*(missed/100);
+    roiLost.textContent=fmt(missedCalls*value);
+    roiCallCount.textContent=fmt(missedCalls)+(Math.round(missedCalls)===1?' missed call':' missed calls');
   }
   if(roiCalls){
     [roiCalls,roiMissed,roiValue].forEach(function(el){
+      var fallback=el.getAttribute('value')||'0';
       el.addEventListener('input',calcRoi);
+      el.addEventListener('blur',function(){
+        // Snap to the clamped value, and restore the default rather than
+        // leaving an empty field reading as a $0 estimate.
+        el.value = el.value.trim()==='' ? fallback : fieldValue(el);
+        calcRoi();
+      });
     });
     calcRoi();
   }
