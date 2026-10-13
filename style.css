@@ -756,3 +756,72 @@ body.light .hero-video{box-shadow:0 34px 90px -40px rgba(14,35,64,.35)}
 @media (max-width:768px){
   .hero-video{margin-top:var(--s-4);border-radius:12px}
 }
+
+/* ============================================================
+   LIVE AI CALL BUTTON
+============================================================ */
+.livecall{margin:var(--s-4) auto 0;max-width:560px}
+.livecall-btn{
+  position:relative;display:flex;align-items:center;gap:16px;
+  padding:18px 22px;border-radius:var(--radius);
+  background:linear-gradient(135deg,#1565C0,#0d4e99);
+  border:1px solid rgba(133,183,235,.5);
+  box-shadow:0 18px 48px -18px rgba(21,101,192,.75);
+  color:#fff;overflow:hidden;
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.livecall-btn:hover{transform:translateY(-3px);box-shadow:0 24px 60px -18px rgba(21,101,192,.9)}
+.livecall-btn:active{transform:translateY(-1px)}
+/* sheen sweep */
+.livecall-btn::after{
+  content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent);
+  transform:skewX(-18deg);animation:lcSheen 4.5s ease-in-out infinite;
+}
+@keyframes lcSheen{0%,70%{left:-60%}100%{left:130%}}
+.lc-ic{
+  position:relative;z-index:1;flex:0 0 auto;
+  width:48px;height:48px;border-radius:50%;
+  display:grid;place-items:center;
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
+  animation:lcShake 3.2s ease-in-out infinite;
+}
+@keyframes lcShake{0%,88%,100%{transform:rotate(0)}91%{transform:rotate(-11deg)}94%{transform:rotate(11deg)}97%{transform:rotate(-6deg)}}
+.lc-ring{
+  position:absolute;left:22px;top:50%;margin-top:-24px;
+  width:48px;height:48px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.55);
+  animation:lcRing 2.4s ease-out infinite;pointer-events:none;
+}
+@keyframes lcRing{0%{transform:scale(1);opacity:.65}100%{transform:scale(1.9);opacity:0}}
+.lc-txt{position:relative;z-index:1;display:flex;flex-direction:column;line-height:1.3;flex:1;min-width:0}
+.lc-txt b{font-family:var(--sans);font-size:16px;font-weight:700}
+.lc-num{font-family:var(--serif);font-size:21px;letter-spacing:.01em;margin-top:2px}
+.lc-live{
+  position:relative;z-index:1;flex:0 0 auto;
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.14em;
+  padding:5px 11px;border-radius:var(--radius-pill);
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);
+}
+.lc-dot{width:7px;height:7px;border-radius:50%;background:#3fd17a;animation:lcPulse 1.5s ease-in-out infinite}
+@keyframes lcPulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(63,209,122,.6)}50%{opacity:.55;box-shadow:0 0 0 6px rgba(63,209,122,0)}}
+.lc-hint{margin-top:11px;text-align:center;font-size:14px;color:var(--white-55)}
+/* divider */
+.lc-or{
+  display:flex;align-items:center;gap:16px;
+  max-width:560px;margin:var(--s-4) auto var(--s-3);
+  color:var(--white-40);font-size:13px;letter-spacing:.04em;
+}
+.lc-or::before,.lc-or::after{content:"";flex:1;height:1px;background:var(--line)}
+@media (prefers-reduced-motion:reduce){
+  .livecall-btn::after,.lc-ic,.lc-ring,.lc-dot{animation:none}
+  .lc-ring{display:none}
+}
+@media (max-width:560px){
+  .livecall-btn{gap:13px;padding:16px 18px}
+  .lc-txt{padding-right:62px} /* clears the absolute LIVE badge */
+  .lc-txt b{font-size:14.5px}
+  .lc-num{font-size:19px}
+  .lc-live{position:absolute;top:14px;right:16px;font-size:10px;padding:4px 9px}
+}
