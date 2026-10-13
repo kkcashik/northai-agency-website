@@ -108,6 +108,19 @@
       <a href="#services" class="btn btn-ghost">See how it works</a>
     </div>
 
+    <!-- Hero promo video -->
+    <div class="hero-video reveal" style="transition-delay:.2s">
+      <video id="heroPromo" autoplay muted loop playsinline preload="metadata"
+             poster="video/promo-poster.jpg" aria-label="NorthAI promo: how the AI receptionist answers after-hours calls">
+        <source src="video/promo.webm" type="video/webm">
+        <source src="video/promo.mp4" type="video/mp4">
+      </video>
+      <button class="hv-toggle" id="heroPromoToggle" type="button" aria-label="Pause video">
+        <svg class="hv-pause" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+        <svg class="hv-play" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
+
     <!-- Interactive AI call demo card -->
     <div class="call-card reveal" id="callDemo" style="transition-delay:.22s" aria-label="Demo of NorthAI handling a patient call">
       <div class="cc-top">

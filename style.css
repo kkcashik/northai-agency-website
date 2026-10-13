@@ -727,3 +727,32 @@ body.light .tcard,
 body.light .vstat,
 body.light .founder .fcard{box-shadow:0 12px 34px -20px rgba(14,35,64,.28)}
 body.light .theme-toggle{box-shadow:0 10px 30px rgba(14,35,64,.16)}
+
+/* ============================================================
+   HERO PROMO VIDEO
+============================================================ */
+.hero-video{
+  position:relative;max-width:760px;margin:var(--s-5) auto 0;
+  border:1px solid var(--line-strong);border-radius:16px;overflow:hidden;
+  box-shadow:0 34px 90px -34px rgba(0,0,0,.6);
+  background:var(--navy-2);line-height:0;
+}
+.hero-video video{width:100%;height:auto;display:block}
+.hv-toggle{
+  position:absolute;bottom:12px;right:12px;
+  width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;cursor:pointer;
+  background:rgba(14,35,64,.6);border:1px solid rgba(255,255,255,.22);
+  color:#fff;backdrop-filter:blur(6px);
+  opacity:0;transition:opacity .25s ease,background .2s ease;
+}
+.hero-video:hover .hv-toggle,.hv-toggle:focus-visible{opacity:1}
+.hv-toggle:hover{background:rgba(14,35,64,.85)}
+.hv-toggle .hv-play{display:none}
+.hero-video.paused .hv-toggle{opacity:1}
+.hero-video.paused .hv-play{display:block}
+.hero-video.paused .hv-pause{display:none}
+body.light .hero-video{box-shadow:0 34px 90px -40px rgba(14,35,64,.35)}
+@media (max-width:768px){
+  .hero-video{margin-top:var(--s-4);border-radius:12px}
+}

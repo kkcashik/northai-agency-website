@@ -308,4 +308,46 @@
       try{ localStorage.setItem(THEME_KEY,next); }catch(e){}
     });
   }
+
+  /* ===== Hero promo video ===== */
+  var hv=document.getElementById('heroPromo'),
+      hvWrap=hv ? hv.parentElement : null,
+      hvBtn=document.getElementById('heroPromoToggle');
+
+  if(hv && hvBtn){
+    function hvSync(){
+      var paused=hv.paused;
+      hvWrap.classList.toggle('paused',paused);
+      hvBtn.setAttribute('aria-label', paused ? 'Play video' : 'Pause video');
+    }
+    var hvUserPaused=false;
+    var hvReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    hvBtn.addEventListener('click',function(){
+      if(hv.paused){ hvUserPaused=false; hv.play().catch(function(){}); }
+      else { hvUserPaused=true; hv.pause(); }
+      hvSync();
+    });
+    hv.addEventListener('play',hvSync);
+    hv.addEventListener('pause',hvSync);
+
+    // honour reduced-motion: hold on the poster frame until asked
+    if(hvReduced){
+      hv.removeAttribute('autoplay');
+      hvUserPaused=true;
+      hv.pause();
+    }
+    hvSync();
+
+    // don't burn CPU/battery while the hero is off-screen
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(hvUserPaused) return;
+          if(e.isIntersecting) hv.play().catch(function(){});
+          else hv.pause();
+        });
+      },{threshold:.15}).observe(hv);
+    }
+  }
 })();
