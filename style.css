@@ -825,3 +825,26 @@ body.light .hero-video{box-shadow:0 34px 90px -40px rgba(14,35,64,.35)}
   .lc-num{font-size:19px}
   .lc-live{position:absolute;top:14px;right:16px;font-size:10px;padding:4px 9px}
 }
+
+/* ===== Hero small live-call pill ===== */
+.btn-call{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:13px 20px;border-radius:var(--radius-pill);
+  font-family:var(--sans);font-size:15px;font-weight:500;
+  color:var(--white);background:rgba(63,209,122,.08);
+  border:1px solid rgba(63,209,122,.45);
+  transition:transform .25s ease,background .25s ease,border-color .25s ease;
+}
+.btn-call:hover{
+  transform:translateY(-2px);
+  background:rgba(63,209,122,.16);border-color:rgba(63,209,122,.75);
+}
+.btn-call svg{opacity:.9}
+.bc-dot{
+  width:8px;height:8px;border-radius:50%;flex:0 0 auto;background:#3fd17a;
+  animation:bcPulse 1.6s ease-in-out infinite;
+}
+@keyframes bcPulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(63,209,122,.55)}50%{opacity:.6;box-shadow:0 0 0 5px rgba(63,209,122,0)}}
+body.light .btn-call{color:#14673a;background:rgba(63,209,122,.1);border-color:rgba(63,209,122,.5)}
+body.light .btn-call:hover{background:rgba(63,209,122,.18)}
+@media (prefers-reduced-motion:reduce){.bc-dot{animation:none}}
