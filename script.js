@@ -164,8 +164,8 @@
       ccFoot=document.getElementById('ccFoot'),
       ccTabs=document.querySelectorAll('.cc-tab');
 
-  /* `at` = second in the recording where each line starts.
-     Leave null to spread lines automatically by text length. */
+  /* `at` = second in the recording where each line starts (measured from the clip's pauses).
+     Set to null to spread lines automatically by text length. */
   var CC_SCENARIOS={
     cdcp:{
       audio:'audio/scenario-cdcp.mp3?v=1',
@@ -173,17 +173,17 @@
       done:'Call complete · patient booked',
       tags:['✓ CDCP checked','✓ Appointment booked','✓ Confirmation texted'],
       lines:[
-        {us:1,at:null,t:'Hi, thanks for calling Maple Dental, this is the after-hours assistant. How can I help?'},
-        {us:0,at:null,t:'Oh hi! Um, do you guys take the CDCP? The government dental plan?'},
-        {us:1,at:null,t:'We do, yes. We bill CDCP directly. Are you already enrolled — do you have your member ID?'},
-        {us:0,at:null,t:'Yeah, I got the letter last month.'},
-        {us:1,at:null,t:'Perfect. A check-up and cleaning is covered — depending on your income there might be a small co-pay, and we’ll confirm that before anything’s done. I’ve got Saturday at 10:30, does that work?'},
-        {us:0,at:null,t:'Oh, that’s great. Yeah, 10:30 works.'},
-        {us:1,at:null,t:'Lovely. Can I get your full name?'},
-        {us:0,at:null,t:'Maria Santos.'},
-        {us:1,at:null,t:'Thanks, Maria. You’re booked for Saturday, 10:30. I’m texting you a confirmation now — just bring your CDCP member ID. Anything else?'},
-        {us:0,at:null,t:'No, that’s it. Thank you so much!'},
-        {us:1,at:null,t:'You’re welcome. Have a good night!'}
+        {us:1,at:0.0,t:'Hi, thanks for calling Maple Dental, this is the after-hours assistant. How can I help?'},
+        {us:0,at:5.0,t:'Oh hi! Um, do you guys take the CDCP? The government dental plan?'},
+        {us:1,at:10.0,t:'We do, yes. We bill CDCP directly. Are you already enrolled — do you have your member ID?'},
+        {us:0,at:16.1,t:'Yeah, I got the letter last month.'},
+        {us:1,at:18.3,t:'Perfect. A check-up and cleaning is covered — depending on your income there might be a small co-pay, and we’ll confirm that before anything’s done. I’ve got Saturday at 10:30, does that work?'},
+        {us:0,at:28.6,t:'Oh, that’s great. Yeah, 10:30 works.'},
+        {us:1,at:32.0,t:'Lovely. Can I get your full name?'},
+        {us:0,at:33.4,t:'Maria Santos.'},
+        {us:1,at:35.8,t:'Thanks, Maria. You’re booked for Saturday, 10:30. I’m texting you a confirmation now — just bring your CDCP member ID. Anything else?'},
+        {us:0,at:43.5,t:'No, that’s it. Thank you so much!'},
+        {us:1,at:46.3,t:'You’re welcome. Have a good night!'}
       ]
     },
     emergency:{
@@ -192,15 +192,15 @@
       done:'Call complete · emergency slot booked',
       tags:['✓ Triage done','✓ Emergency slot booked','✓ Details texted'],
       lines:[
-        {us:1,at:null,t:'Hi, Maple Dental after-hours line. How can I help you tonight?'},
-        {us:0,at:null,t:'Hi… yeah, I’ve got really bad tooth pain. Started this afternoon, and it’s getting worse.'},
-        {us:1,at:null,t:'I’m sorry, that sounds rough. Quick question so I can help — any swelling in your face, fever, or trouble swallowing or breathing?'},
-        {us:0,at:null,t:'No, no swelling. It just really throbs.'},
-        {us:1,at:null,t:'Okay, good. I’m booking you our first emergency spot tomorrow — Monday at 8:15. The dentist will see you first thing.'},
-        {us:0,at:null,t:'Okay. Thank you.'},
-        {us:1,at:null,t:'Until then, a cold compress on your cheek can help. And if any swelling, fever, or trouble breathing starts, please go to the ER right away. Can I get your name?'},
-        {us:0,at:null,t:'Daniel Cho.'},
-        {us:1,at:null,t:'Got it, Daniel. You’re booked for 8:15 tomorrow — I’m texting you the details now. Hope you feel better.'}
+        {us:1,at:0.0,t:'Hi, Maple Dental after-hours line. How can I help you tonight?'},
+        {us:0,at:4.1,t:'Hi… yeah, I’ve got really bad tooth pain. Started this afternoon, and it’s getting worse.'},
+        {us:1,at:9.8,t:'I’m sorry, that sounds rough. Quick question so I can help — any swelling in your face, fever, or trouble swallowing or breathing?'},
+        {us:0,at:17.7,t:'No, no swelling. It just really throbs.'},
+        {us:1,at:21.0,t:'Okay, good. I’m booking you our first emergency spot tomorrow — Monday at 8:15. The dentist will see you first thing.'},
+        {us:0,at:28.3,t:'Okay. Thank you.'},
+        {us:1,at:29.8,t:'Until then, a cold compress on your cheek can help. And if any swelling, fever, or trouble breathing starts, please go to the ER right away. Can I get your name?'},
+        {us:0,at:38.9,t:'Daniel Cho.'},
+        {us:1,at:39.9,t:'Got it, Daniel. You’re booked for 8:15 tomorrow — I’m texting you the details now. Hope you feel better.'}
       ]
     }
   };
