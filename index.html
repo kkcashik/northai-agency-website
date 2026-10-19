@@ -141,22 +141,18 @@
         <span class="cc-time" id="ccTime">00:00</span>
       </div>
 
+      <div class="cc-tabs" role="tablist" aria-label="Choose a demo call">
+        <button class="cc-tab active" type="button" role="tab" aria-selected="true" data-scn="cdcp">CDCP patient</button>
+        <button class="cc-tab" type="button" role="tab" aria-selected="false" data-scn="emergency">Toothache emergency</button>
+      </div>
+
       <div class="cc-wave paused" id="ccWave" aria-hidden="true">
         <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
 
-      <div class="cc-transcript" id="ccTranscript" aria-live="polite">
-        <p class="cc-them cc-msg">“Hi, do you take CDCP patients? And are you open this weekend?”</p>
-        <p class="cc-us cc-msg">“Yes — we accept CDCP and have Saturday openings. I can book you in for 10:30am. What's your name?”</p>
-        <p class="cc-them cc-msg">“Maria. Is a cleaning covered under my plan?”</p>
-        <p class="cc-us cc-msg">“Cleanings are covered under CDCP, Maria. You're booked for Saturday 10:30am — confirmation is on its way by text.”</p>
-      </div>
+      <div class="cc-transcript" id="ccTranscript" aria-live="polite"></div>
 
-      <div class="cc-foot" id="ccFoot">
-        <span class="cc-tag cc-msg">✓ CDCP verified</span>
-        <span class="cc-tag cc-msg">✓ Appointment booked</span>
-        <span class="cc-tag cc-msg">✓ Confirmation sent</span>
-      </div>
+      <div class="cc-foot" id="ccFoot"></div>
 
       <button class="cc-play" id="ccPlay" type="button">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>

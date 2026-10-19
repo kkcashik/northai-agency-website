@@ -154,58 +154,129 @@
     calcRoi();
   }
 
-  /* ===== Hero call demo playback (with voice) ===== */
+  /* ===== Hero call demo playback (two scenarios, one continuous recording each) ===== */
   var ccPlay=document.getElementById('ccPlay'),
       ccWave=document.getElementById('ccWave'),
       ccTime=document.getElementById('ccTime'),
       ccStatusText=document.getElementById('ccStatusText'),
       ccPlayLabel=document.getElementById('ccPlayLabel'),
-      ccLines=document.querySelectorAll('#ccTranscript .cc-msg'),
-      ccTags=document.querySelectorAll('#ccFoot .cc-msg');
+      ccTranscript=document.getElementById('ccTranscript'),
+      ccFoot=document.getElementById('ccFoot'),
+      ccTabs=document.querySelectorAll('.cc-tab');
 
-  if(ccPlay){
-    var ccTimers=[], ccTicker=null, ccPlaying=false;
-    var synth=window.speechSynthesis||null;
-    var ccVoice={us:null,them:null};
-
-    function ccPickVoices(){
-      if(!synth) return;
-      var vs=synth.getVoices()||[];
-      var en=vs.filter(function(v){ return /^en(-|_|$)/i.test(v.lang); });
-      if(!en.length) en=vs;
-      function find(names){
-        for(var n=0;n<names.length;n++){
-          for(var i=0;i<en.length;i++){
-            if(en[i].name.toLowerCase().indexOf(names[n])>=0) return en[i];
-          }
-        }
-        return null;
-      }
-      // receptionist = warm female voice; patient = a distinctly different voice
-      ccVoice.us   = find(['jenny','aria','samantha','zira','google us english','female']) || en[0] || null;
-      ccVoice.them = find(['guy','david','mark','daniel','google uk english male','male']) || en[1] || en[0] || null;
+  /* `at` = second in the recording where each line starts.
+     Leave null to spread lines automatically by text length. */
+  var CC_SCENARIOS={
+    cdcp:{
+      audio:'audio/scenario-cdcp.mp3?v=1',
+      status:'Incoming call · Saturday 9:04 PM',
+      done:'Call complete · patient booked',
+      tags:['✓ CDCP checked','✓ Appointment booked','✓ Confirmation texted'],
+      lines:[
+        {us:1,at:null,t:'Hi, thanks for calling Maple Dental, this is the after-hours assistant. How can I help?'},
+        {us:0,at:null,t:'Oh hi! Um, do you guys take the CDCP? The government dental plan?'},
+        {us:1,at:null,t:'We do, yes. We bill CDCP directly. Are you already enrolled — do you have your member ID?'},
+        {us:0,at:null,t:'Yeah, I got the letter last month.'},
+        {us:1,at:null,t:'Perfect. A check-up and cleaning is covered — depending on your income there might be a small co-pay, and we’ll confirm that before anything’s done. I’ve got Saturday at 10:30, does that work?'},
+        {us:0,at:null,t:'Oh, that’s great. Yeah, 10:30 works.'},
+        {us:1,at:null,t:'Lovely. Can I get your full name?'},
+        {us:0,at:null,t:'Maria Santos.'},
+        {us:1,at:null,t:'Thanks, Maria. You’re booked for Saturday, 10:30. I’m texting you a confirmation now — just bring your CDCP member ID. Anything else?'},
+        {us:0,at:null,t:'No, that’s it. Thank you so much!'},
+        {us:1,at:null,t:'You’re welcome. Have a good night!'}
+      ]
+    },
+    emergency:{
+      audio:'audio/scenario-emergency.mp3?v=1',
+      status:'Incoming call · Sunday 11:40 PM',
+      done:'Call complete · emergency slot booked',
+      tags:['✓ Triage done','✓ Emergency slot booked','✓ Details texted'],
+      lines:[
+        {us:1,at:null,t:'Hi, Maple Dental after-hours line. How can I help you tonight?'},
+        {us:0,at:null,t:'Hi… yeah, I’ve got really bad tooth pain. Started this afternoon, and it’s getting worse.'},
+        {us:1,at:null,t:'I’m sorry, that sounds rough. Quick question so I can help — any swelling in your face, fever, or trouble swallowing or breathing?'},
+        {us:0,at:null,t:'No, no swelling. It just really throbs.'},
+        {us:1,at:null,t:'Okay, good. I’m booking you our first emergency spot tomorrow — Monday at 8:15. The dentist will see you first thing.'},
+        {us:0,at:null,t:'Okay. Thank you.'},
+        {us:1,at:null,t:'Until then, a cold compress on your cheek can help. And if any swelling, fever, or trouble breathing starts, please go to the ER right away. Can I get your name?'},
+        {us:0,at:null,t:'Daniel Cho.'},
+        {us:1,at:null,t:'Got it, Daniel. You’re booked for 8:15 tomorrow — I’m texting you the details now. Hope you feel better.'}
+      ]
     }
-    if(synth){ ccPickVoices(); if(synth.onvoiceschanged!==undefined) synth.onvoiceschanged=ccPickVoices; }
+  };
+
+  if(ccPlay && ccTranscript){
+    var ccTimers=[], ccTicker=null, ccPlaying=false, ccScn='cdcp';
+    var ccLines=[], ccTags=[], ccClip=null, ccShown=-1;
+
+    /* Only the latest 2 lines stay visible, so the card never grows */
+    var CC_VISIBLE=2;
+
+    function ccFmt(sec){ sec=Math.floor(sec); var m=Math.floor(sec/60), r=sec%60; return (m<10?'0':'')+m+':'+(r<10?'0':'')+r; }
+
+    function ccBuild(){
+      var s=CC_SCENARIOS[ccScn];
+      ccTranscript.innerHTML=''; ccFoot.innerHTML='';
+      ccLines=s.lines.map(function(l){
+        var p=document.createElement('p');
+        p.className=(l.us?'cc-us':'cc-them')+' cc-msg';
+        p.textContent='“'+l.t+'”';
+        ccTranscript.appendChild(p);
+        return p;
+      });
+      ccTags=s.tags.map(function(t){
+        var sp=document.createElement('span');
+        sp.className='cc-tag cc-msg';
+        sp.textContent=t;
+        ccFoot.appendChild(sp);
+        return sp;
+      });
+      ccStatusText.textContent=s.status;
+      ccPlayLabel.textContent='Hear NorthAI take this call';
+    }
+
+    function ccStopAudio(){
+      if(ccClip){ try{ ccClip.onended=null; ccClip.ontimeupdate=null; ccClip.pause(); }catch(e){} ccClip=null; }
+    }
 
     function ccReset(){
       ccTimers.forEach(clearTimeout); ccTimers=[];
       if(ccTicker) clearInterval(ccTicker);
-      if(synth){ try{ synth.cancel(); }catch(e){} }
       ccStopAudio();
       ccLines.forEach(function(m){ m.classList.remove('show'); });
       ccTags.forEach(function(m){ m.classList.remove('show'); });
       ccWave.classList.add('paused');
       ccTime.textContent='00:00';
+      ccShown=-1;
       ccPlaying=false;
+    }
+
+    function ccShowLine(i){
+      if(i<=ccShown) return;
+      for(var k=ccShown+1;k<=i;k++) ccLines[k].classList.add('show');
+      ccShown=i;
+      ccLines.forEach(function(el,k){ if(k<=i-CC_VISIBLE) el.classList.remove('show'); });
+    }
+
+    /* Start time (s) of each line: explicit `at`, else proportional to text length */
+    function ccCues(duration){
+      var lines=CC_SCENARIOS[ccScn].lines;
+      var total=lines.reduce(function(a,l){ return a+l.t.length; },0), acc=0;
+      return lines.map(function(l){
+        var c=(l.at!=null)?l.at:duration*acc/total;
+        acc+=l.t.length;
+        return c;
+      });
     }
 
     function ccFinish(){
       if(ccTicker) clearInterval(ccTicker);
       ccWave.classList.add('paused');
+      ccShowLine(ccLines.length-1);
       ccTags.forEach(function(t,i){
         ccTimers.push(setTimeout(function(){ t.classList.add('show'); }, 250+i*320));
       });
-      ccStatusText.textContent='Call complete · patient booked';
+      ccStatusText.textContent=CC_SCENARIOS[ccScn].done;
       ccPlayLabel.textContent='Replay the call';
       ccPlay.classList.remove('hidden');
       ccPlaying=false;
@@ -224,54 +295,29 @@
       document.addEventListener('keydown',function(e){ if(e.key==='Escape') ccHideModal(); });
     }
 
-    /* Pre-recorded neural voice clips — fresh Audio objects per playback
-       (reusing one element across replays is what made sound flaky) */
-    var ccCurrentClip=null;
-    // warm the browser cache once so first play is instant
-    for(var ci=1;ci<=4;ci++){ var warm=new Audio('audio/call-'+ci+'.mp3?v=1'); warm.preload='auto'; }
-
-    function ccStopAudio(){
-      if(ccCurrentClip){ try{ ccCurrentClip.onended=null; ccCurrentClip.pause(); }catch(e){} ccCurrentClip=null; }
-    }
-
-    function ccSpeak(i){
+    /* No audio available: reveal lines on a reading-pace timer instead */
+    function ccSilentRun(i){
       if(!ccPlaying) return;
       if(i>=ccLines.length){ ccFinish(); return; }
-      var el=ccLines[i];
-      var text=el.textContent.replace(/[“”"]/g,'').trim();
-      var isUs=el.classList.contains('cc-us');
-
-      function reveal(){
-        el.classList.add('show');
-        ccWave.classList.remove('paused');
-      }
-      function next(){
-        if(!ccPlaying) return;
-        ccWave.classList.add('paused');
-        ccTimers.push(setTimeout(function(){ ccSpeak(i+1); }, 420));
-      }
-
-      var clip=new Audio('audio/call-'+(i+1)+'.mp3?v=1');
-      ccCurrentClip=clip;
-      clip.onended=next;
-      var p=clip.play();
-      if(p && p.then){
-        p.then(reveal) // text appears only once audio is actually playing
-         .catch(function(){ reveal(); ccSpeakTTS(text,isUs,next); });
-      } else { reveal(); }
+      ccShowLine(i);
+      var len=CC_SCENARIOS[ccScn].lines[i].t.length;
+      ccTimers.push(setTimeout(function(){ ccSilentRun(i+1); }, Math.max(1600, len*45)));
     }
 
-    /* Fallback: browser speech synthesis if audio files can't play */
-    function ccSpeakTTS(text,isUs,done){
-      if(!synth){ ccTimers.push(setTimeout(done, Math.max(1900, text.length*46))); return; }
-      var u=new SpeechSynthesisUtterance(text);
-      u.voice = isUs ? ccVoice.us : ccVoice.them;
-      u.rate  = isUs ? 1.03 : 1.0;
-      u.pitch = isUs ? 1.06 : 0.92;
-      u.onend=done;
-      u.onerror=done;
-      try{ synth.speak(u); }catch(e){ done(); }
-    }
+    ccTabs.forEach(function(tab){
+      tab.addEventListener('click',function(){
+        if(tab.dataset.scn===ccScn && !ccPlaying) return;
+        ccReset();
+        ccScn=tab.dataset.scn;
+        ccTabs.forEach(function(t){
+          var on=(t===tab);
+          t.classList.toggle('active',on);
+          t.setAttribute('aria-selected',on?'true':'false');
+        });
+        ccPlay.classList.remove('hidden');
+        ccBuild();
+      });
+    });
 
     ccPlay.addEventListener('click',function(){
       ccReset();
@@ -280,14 +326,30 @@
       ccStatusText.textContent='Live · answering now';
       ccWave.classList.remove('paused');
 
-      var secs=0;
-      ccTicker=setInterval(function(){
-        secs++; ccTime.textContent='00:'+(secs<10?'0':'')+secs;
-      },1000);
-
-      if(synth){ try{ synth.resume(); }catch(e){} }
-      ccSpeak(0); // first utterance fires inside the click gesture (required by browsers)
+      // a fresh Audio object per playback (reusing one element made sound flaky)
+      var clip=new Audio(CC_SCENARIOS[ccScn].audio);
+      ccClip=clip;
+      var cues=null;
+      clip.ontimeupdate=function(){
+        if(!ccPlaying) return;
+        if(!cues && isFinite(clip.duration)) cues=ccCues(clip.duration);
+        var t=clip.currentTime;
+        ccTime.textContent=ccFmt(t);
+        if(cues){ for(var i=cues.length-1;i>=0;i--){ if(t>=cues[i]){ ccShowLine(i); break; } } }
+      };
+      clip.onended=function(){ if(ccPlaying) ccFinish(); };
+      var p=clip.play(); // must fire inside the click gesture
+      if(p && p.catch){
+        p.catch(function(){
+          if(!ccPlaying) return;
+          var secs=0;
+          ccTicker=setInterval(function(){ secs++; ccTime.textContent=ccFmt(secs); },1000);
+          ccSilentRun(0);
+        });
+      }
     });
+
+    ccBuild();
   }
 
   /* ===== Theme toggle (dark / light) ===== */
