@@ -118,6 +118,7 @@
 
     form.style.display='none';
     ok.classList.add('show');
+    if(window.fbq) fbq('track','Lead',{content_name:'Demo booking request'});
 
     if(GHL_WEBHOOK_URL.indexOf('http')===0){
       fetch(GHL_WEBHOOK_URL,{

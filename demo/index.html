@@ -9,6 +9,24 @@
 <meta name="theme-color" content="#141413">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1687758162904638');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1687758162904638&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 <!-- Open Graph -->
 <meta property="og:title" content="Free Demo Website for GTA Businesses | NorthAI">
 <meta property="og:description" content="Get a free 2-page demo website for your local business in 48 hours. No cost, no obligation, no credit card.">
@@ -483,6 +501,7 @@ footer a:hover{color:var(--accent)}
       if(!res.ok) throw new Error('HTTP '+res.status);
       form.style.display='none';
       thanks.classList.add('show');
+      if(window.fbq) fbq('track','Lead',{content_name:'Free demo website request'});
       window.scrollTo({top:0,behavior:'smooth'});
     }).catch(function(){
       btn.disabled=false;
