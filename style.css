@@ -235,69 +235,59 @@ header.nav.scrolled{
 .alert a:hover{opacity:.7}
 
 /* ============================================================
-   SERVICES — bento
+   SERVICES — bento (surfaces separated by tone, not lines)
 ============================================================ */
+.svc-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:var(--s-4);align-items:end}
+.svc-head .h2{max-width:none}
+.svc-head .lead{color:var(--white);margin:0}
 .bento{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-2);margin-top:var(--s-5)}
 .card{
-  background:var(--navy-card);border:1px solid var(--line);border-radius:var(--radius);
-  padding:var(--s-4);transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;
+  background:var(--navy-card);border-radius:var(--radius);
+  padding:var(--s-4);transition:transform .3s ease;
   position:relative;overflow:hidden;
 }
-.card:hover{transform:translateY(-4px);border-color:var(--lightblue);box-shadow:0 18px 40px rgba(0,0,0,.35)}
-.card .ic{width:54px;height:54px;border:1px solid var(--line-strong);border-radius:14px;
-  display:grid;place-items:center;margin-bottom:var(--s-3)}
-.card .ctag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--lightblue)}
-.card h3{font-size:24px;margin:10px 0 8px}
-.card p{color:var(--white-55);font-size:15px}
+.card:hover{transform:translateY(-4px)}
+.card h3{font-size:24px;margin:0 0 8px}
+.card p{color:var(--white-55);font-size:16px}
 .card.big{grid-column:span 2;display:grid;grid-template-columns:1.05fr 1fr;gap:var(--s-3);align-items:center}
 .card.big h3{font-size:32px}
-.card.wide{grid-column:span 2;display:grid;grid-template-columns:1.1fr 1fr;gap:var(--s-3);align-items:center}
-.card-copy .price-badge{margin-top:var(--s-3)}
+.card.duo{grid-column:span 2;display:grid;grid-template-columns:1fr 1.1fr;gap:var(--s-3);align-items:center}
+.card.duo .mock{margin-top:0}
+.card.wide{grid-column:span 3;display:grid;grid-template-columns:1.1fr 1fr;gap:var(--s-4);align-items:center}
 
-/* --- product mockups inside service cards --- */
+/* --- product fragments inside service cards --- */
 .mock{
-  margin-top:var(--s-3);background:var(--navy-2);border:1px solid var(--line);
-  border-radius:var(--radius-sm);padding:16px;font-size:13px;
+  margin-top:var(--s-3);background:var(--navy-2);
+  border-radius:var(--radius-sm);padding:16px 18px;font-size:14px;
 }
 .card.big .mock,.card.wide .mock{margin-top:0}
-.mock-head{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--white-40);margin-bottom:12px}
-.mock-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
-.mock-row:first-of-type{border-top:0}
+.mock-head{font-size:14px;font-weight:500;color:var(--white-55);margin-bottom:8px}
+.mock-row{display:flex;align-items:center;gap:12px;padding:9px 0}
 .mock-row>div{flex:1;min-width:0}
-.mock-row b{display:block;font-size:13px;color:var(--white);font-weight:700}
-.mock-row span{font-size:12px;color:var(--white-55)}
-.mock-time{flex:0 0 auto;font-size:11px;color:var(--lightblue);min-width:56px}
-.mock-ok{flex:0 0 auto;font-size:11px;color:#3fd17a;background:rgba(63,209,122,.1);
-  border:1px solid rgba(63,209,122,.22);border-radius:var(--radius-pill);padding:3px 10px}
-.mock-night-row{display:flex;align-items:center;gap:9px;padding:8px 0;color:var(--white-55);font-size:13px}
-.mock-night-row b{color:#3fd17a;margin-left:auto}
+.mock-row b{display:block;font-size:14px;color:var(--white);font-weight:700}
+.mock-row span{font-size:13px;color:var(--white-55)}
+.mock-time{flex:0 0 auto;font-size:13px;color:var(--lightblue);min-width:64px}
+.mock-night-row{display:flex;align-items:center;gap:10px;padding:7px 0;color:var(--text-strong);font-size:14px}
 .mock-dot{width:7px;height:7px;border-radius:50%;background:var(--lightblue);flex:0 0 auto}
-.mock-review-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
-.mock-stars{color:#f5b942;letter-spacing:2px;font-size:14px}
-.mock-badge{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--lightblue);
-  border:1px solid var(--line-strong);border-radius:var(--radius-pill);padding:3px 9px}
-.mock-review p{color:var(--text-strong);font-size:13px;line-height:1.5}
-.mock-review-foot{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);color:var(--white-55);font-size:12px}
-.mock-review-foot b{color:var(--white);font-size:14px}
-.mock-up{color:#3fd17a}
-.mock-chat .mock-q,.mock-chat .mock-a{border-radius:10px;padding:9px 12px;font-size:13px;line-height:1.45;margin:0}
-.mock-chat .mock-q{background:var(--navy-card);color:var(--white-55);border:1px solid var(--line);max-width:88%}
-.mock-chat .mock-a{background:rgba(133,183,235,.12);color:var(--text-strong);border:1px solid rgba(133,183,235,.28);
-  margin-top:8px;margin-left:auto;max-width:92%}
+.mock-chat .mock-q,.mock-chat .mock-a{border-radius:12px;padding:10px 13px;font-size:14px;line-height:1.45;margin:0}
+.mock-chat .mock-q{background:var(--navy-card);color:var(--text-strong);max-width:88%}
+.mock-chat .mock-a{background:rgba(133,183,235,.16);color:var(--text-strong);margin-top:8px;margin-left:auto;max-width:92%}
+.mock-chat .mock-sms{margin-top:0}
+.mock-chat .mock-meta{font-size:13px;color:var(--white-55);margin-top:8px;text-align:right}
 .mock-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
-.mock-tile{background:var(--navy-card);border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
-.mock-tile b{display:block;font-family:var(--serif);font-size:20px;color:var(--lightblue)}
-.mock-tile span{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--white-40)}
+.mock-tile{background:var(--navy-card);border-radius:10px;padding:12px 10px;text-align:center}
+.mock-tile b{display:block;font-family:var(--serif);font-size:24px;color:var(--lightblue)}
+.mock-tile span{font-size:13px;color:var(--white-55)}
 
-/* --- works-with trust strip --- */
+/* --- works-with strip --- */
 .fitbar{
-  margin-top:var(--s-4);border:1px solid var(--line);border-radius:var(--radius);
+  margin-top:var(--s-2);border-radius:var(--radius);
   background:var(--navy-2);padding:var(--s-3) var(--s-4);
   display:flex;align-items:center;gap:var(--s-3);flex-wrap:wrap;
 }
-.fit-title{font-family:var(--serif);font-size:18px;color:var(--white);flex:0 0 auto}
+.fit-title{font-family:var(--serif);font-size:20px;color:var(--white);flex:0 0 auto}
 .fit-items{display:flex;gap:var(--s-2) var(--s-3);flex-wrap:wrap;margin-left:auto}
-.fit-item{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--white-55)}
+.fit-item{display:flex;align-items:center;gap:8px;font-size:15px;color:var(--text-strong)}
 .fit-item svg{flex:0 0 auto}
 
 /* --- pricing guarantee --- */
@@ -305,11 +295,8 @@ header.nav.scrolled{
 .g-item{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--white-55)}
 .g-item svg{flex:0 0 auto}
 .price-badge{display:inline-block;margin-top:var(--s-3);align-self:flex-start;
-  background:rgba(133,183,235,.12);border:1px solid var(--line-strong);color:var(--lightblue);
+  background:rgba(133,183,235,.16);color:var(--lightblue);
   font-weight:700;padding:8px 16px;border-radius:var(--radius-pill);font-size:14px}
-/* pulse ring for phone icon */
-.pulse{transform-origin:center;animation:pulse 2.4s ease-out infinite}
-@keyframes pulse{0%{opacity:.7;transform:scale(.6)}80%,100%{opacity:0;transform:scale(1.5)}}
 .spin-slow{transform-origin:center;animation:spin 14s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -538,7 +525,12 @@ footer{padding:var(--s-6) 0 var(--s-4);border-top:1px solid var(--line)}
   .stat .num{font-size:30px}
 
   .bento{grid-template-columns:1fr}
-  .card.big,.card.wide{grid-column:span 1;grid-template-columns:1fr}
+  .svc-head{grid-template-columns:1fr;gap:var(--s-2)}
+  .card.big,.card.wide,.card.duo{grid-column:span 1;grid-template-columns:1fr}
+  .card.duo .mock{margin-top:var(--s-3)}
+  .card{padding:var(--s-3)}
+  .mock{padding:14px}
+  .mock-time{min-width:58px}
   .card.big .mock,.card.wide .mock{margin-top:var(--s-3)}
   .fitbar{flex-direction:column;align-items:flex-start;padding:var(--s-3)}
   .fit-items{margin-left:0;flex-direction:column;gap:12px}
@@ -709,7 +701,6 @@ body.light header.nav.scrolled{background:rgba(255,255,255,.92);border-bottom:1p
 body.light .mobile-menu{background:rgba(255,255,255,.98)}
 body.light .logo .mark{background:var(--blue);border-color:transparent}
 body.light .call-card{background:#fff}
-body.light .card,
 body.light .case-panel,
 body.light .plan,
 body.light .tcard,

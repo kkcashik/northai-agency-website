@@ -165,92 +165,67 @@
 <!-- ============================ SERVICES ============================ -->
 <section class="section-pad" id="services">
   <div class="wrap">
-    <span class="tag reveal">What we build</span>
-    <h2 class="h2 reveal" style="transition-delay:.05s">Four AI agents. One clinic. Zero missed patients.</h2>
+    <div class="svc-head">
+      <h2 class="h2 reveal">Four AI agents. Zero missed patients.</h2>
+      <p class="lead reveal" style="transition-delay:.05s">Each one takes a job your front desk can’t get to: the 9pm call, the CDCP question, the review request. Start with one and add the rest when you’re ready.</p>
+    </div>
 
     <div class="bento">
       <article class="card big reveal">
         <div class="card-copy">
-          <div class="ic" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle class="pulse" cx="12" cy="12" r="9" stroke="#85B7EB" fill="none"/>
-              <path d="M5 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>
-            </svg>
-          </div>
-          <span class="ctag">Always on</span>
           <h3>AI Receptionist</h3>
-          <p>Answers every call, books straight into your schedule, and sends confirmations — while your team focuses on the patients in the chair.</p>
+          <p>Answers every call, books straight into your schedule and texts the confirmation, while your team stays with the patient in the chair.</p>
           <span class="price-badge">From $1,000/mo</span>
         </div>
-        <div class="mock mock-bookings" aria-hidden="true">
-          <div class="mock-head">Today's AI bookings</div>
-          <div class="mock-row"><span class="mock-time">9:41 PM</span><div><b>Maria L. — Cleaning</b><span>Sat 10:30 AM · CDCP ✓</span></div><span class="mock-ok">Booked</span></div>
-          <div class="mock-row"><span class="mock-time">11:07 PM</span><div><b>David K. — Toothache</b><span>Mon 8:00 AM · Urgent</span></div><span class="mock-ok">Booked</span></div>
-          <div class="mock-row"><span class="mock-time">6:22 AM</span><div><b>Priya S. — New patient</b><span>Tue 2:15 PM · CDCP ✓</span></div><span class="mock-ok">Booked</span></div>
+        <div class="mock mock-bookings" data-ui aria-hidden="true">
+          <div class="mock-head">Booked by NorthAI while you were closed</div>
+          <div class="mock-row"><span class="mock-time">9:41 PM</span><div><b>Maria L.</b><span>Cleaning · Sat 10:30 AM</span></div></div>
+          <div class="mock-row"><span class="mock-time">11:07 PM</span><div><b>David K.</b><span>Toothache · Mon 8:00 AM</span></div></div>
+          <div class="mock-row"><span class="mock-time">6:22 AM</span><div><b>Priya S.</b><span>New patient · Tue 2:15 PM</span></div></div>
         </div>
       </article>
 
       <article class="card reveal" style="transition-delay:.08s">
-        <div class="ic" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8z"/>
-            <circle cx="17" cy="7" r="2.4"/><path d="M17 5.2v3.6M15.2 7h3.6"/>
-          </svg>
-        </div>
-        <span class="ctag">Nighttime</span>
         <h3>Off-Hours Agent</h3>
-        <p>Covers 6pm–8am, weekends, and holidays — every call answered, no voicemail.</p>
-        <div class="mock mock-night" aria-hidden="true">
-          <div class="mock-night-row"><span class="mock-dot"></span>11:38 PM · Call answered <b>✓</b></div>
-          <div class="mock-night-row"><span class="mock-dot"></span>2:14 AM · FAQ resolved <b>✓</b></div>
-          <div class="mock-night-row"><span class="mock-dot"></span>6:51 AM · Appointment booked <b>✓</b></div>
+        <p>Covers 6pm to 8am, weekends and holidays. Every call gets answered, none go to voicemail.</p>
+        <div class="mock mock-night" data-ui aria-hidden="true">
+          <div class="mock-night-row"><span class="mock-dot"></span>11:38 PM · Call answered</div>
+          <div class="mock-night-row"><span class="mock-dot"></span>2:14 AM · Question answered</div>
+          <div class="mock-night-row"><span class="mock-dot"></span>6:51 AM · Appointment booked</div>
         </div>
       </article>
 
       <article class="card reveal" style="transition-delay:.12s">
-        <div class="ic" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle class="spin-slow" cx="12" cy="12" r="10" opacity=".35"/>
-            <path d="M12 4l2.3 4.7 5.2.8-3.8 3.7.9 5.2L12 16l-4.6 2.4.9-5.2L4.5 9.5l5.2-.8z"/>
-          </svg>
-        </div>
-        <span class="ctag">Reputation</span>
         <h3>Google Review Agent</h3>
-        <p>Requests a review after every visit, monitors sentiment, and grows your rating on autopilot.</p>
-        <div class="mock mock-review" aria-hidden="true">
-          <div class="mock-review-top"><span class="mock-stars">★★★★★</span><span class="mock-badge">via AI request</span></div>
-          <p>"Booked at 9pm, seen the next morning. Amazing clinic!"</p>
-          <div class="mock-review-foot"><b>4.9</b> rating · <span class="mock-up">▲ 4× more reviews</span></div>
+        <p>Texts every patient a review link after their visit, so happy patients actually leave one.</p>
+        <div class="mock mock-chat" data-ui aria-hidden="true">
+          <p class="mock-a mock-sms">“Hi Maria, thanks for coming in today. Would you take 30 seconds to review us on Google? g.page/maple-dental”</p>
+          <p class="mock-meta">Sent 2 hours after the visit</p>
         </div>
       </article>
 
-      <article class="card reveal" style="transition-delay:.16s">
-        <div class="ic" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#85B7EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 11.5a8 8 0 0 1-11.6 7.1L3 20l1.4-6.4A8 8 0 1 1 21 11.5z"/>
-            <path d="M8.5 11h7M8.5 14h4"/>
-          </svg>
+      <article class="card duo reveal" style="transition-delay:.16s">
+        <div class="card-copy">
+          <h3>CDCP FAQ Bot</h3>
+          <p>Trained on current CDCP rules and your clinic’s policies, so patients get the right coverage answer at any hour.</p>
         </div>
-        <span class="ctag">Coverage</span>
-        <h3>CDCP FAQ Bot</h3>
-        <p>Trained on current CDCP rules and your clinic's policies — instant, accurate coverage answers.</p>
-        <div class="mock mock-chat" aria-hidden="true">
-          <p class="mock-q">"Is my daughter covered for braces?"</p>
-          <p class="mock-a">"Children under 18 are eligible under CDCP. I can book a quick consult to confirm exactly what her plan covers."</p>
+        <div class="mock mock-chat" data-ui aria-hidden="true">
+          <p class="mock-q">“Is my daughter covered for braces?”</p>
+          <p class="mock-a">“Kids can be covered if your family qualifies for CDCP. Braces need pre-approval first, so I can book a consult to check her plan.”</p>
         </div>
       </article>
 
       <article class="card wide reveal" style="transition-delay:.2s">
         <div class="card-copy">
-          <span class="ctag">One system</span>
-          <h3 style="margin-top:6px">Every agent reports into one weekly dashboard.</h3>
-          <p>No new software for your team to learn. You just see results.</p>
+          <h3>One weekly report for all four.</h3>
+          <p>No new software for your team to learn. Every Monday you see what came in and what got booked.</p>
         </div>
-        <div class="mock mock-dash" aria-hidden="true">
+        <div class="mock mock-dash" data-ui aria-hidden="true">
+          <div class="mock-head">Sample week</div>
           <div class="mock-tiles">
             <div class="mock-tile"><b>47</b><span>Calls handled</span></div>
             <div class="mock-tile"><b>22</b><span>Booked</span></div>
-            <div class="mock-tile"><b>+15</b><span>Reviews</span></div>
+            <div class="mock-tile"><b>15</b><span>Reviews requested</span></div>
           </div>
           <svg width="100%" height="56" viewBox="0 0 220 56" fill="none" stroke="#85B7EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" preserveAspectRatio="none">
             <path d="M6 44l34-14 30 10 38-24 34 16 34-10 38-14"/>
