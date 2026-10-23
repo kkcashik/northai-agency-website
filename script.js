@@ -233,6 +233,8 @@
       });
       ccStatusText.textContent=s.status;
       ccPlayLabel.textContent='Hear NorthAI take this call';
+      // idle preview: the opening exchange, so the card tells its story before play
+      ccLines.slice(0,CC_VISIBLE).forEach(function(el){ el.classList.add('show'); });
     }
 
     function ccStopAudio(){
