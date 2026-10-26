@@ -458,8 +458,8 @@
       </article>
     </div>
     <div class="discovery reveal" style="transition-delay:.2s">
-      <p><b>Free · 20-minute call · No commitment</b><br>See exactly how NorthAI fits your clinic.</p>
-      <a href="#contact" class="btn btn-solid">Book a call <span class="btn-arrow">→</span></a>
+      <p><b>Free · 5 minutes · No commitment</b><br>See exactly how NorthAI fits your clinic.</p>
+      <a href="#contact" class="btn btn-solid">Book a 5-min quick call <span class="btn-arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -521,7 +521,7 @@
 <section class="cta section-pad" id="contact">
   <div class="wrap">
     <h2 class="reveal">Ready to stop losing after-hours patients?</h2>
-    <p class="lead reveal" style="transition-delay:.06s">Book a free 20-minute demo. We'll show you exactly how it works for your clinic.</p>
+    <p class="lead reveal" style="transition-delay:.06s">Book a free 5-min quick call. We'll show you exactly how it works for your clinic.</p>
     <form class="cform reveal" id="demoForm" style="transition-delay:.12s" novalidate>
       <label for="email" style="position:absolute;left:-9999px">Your email address</label>
       <input type="email" id="email" name="email" placeholder="you@yourclinic.ca" required autocomplete="email">
