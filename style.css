@@ -132,6 +132,7 @@ header.nav.scrolled{
 .hero h1{font-size:clamp(36px,4.6vw,66px);letter-spacing:-.025em;line-height:1}
 .hero .lead{margin-top:var(--s-3);font-size:19px;color:var(--white);max-width:44ch}
 .hero-ctas{display:flex;gap:var(--s-2);margin-top:var(--s-4);flex-wrap:wrap;align-items:center}
+.hero-hint{margin-top:14px;font-size:15px;color:var(--white-55);max-width:46ch}
 
 @media (max-width:960px){
   .hero-grid{grid-template-columns:1fr;gap:0}
